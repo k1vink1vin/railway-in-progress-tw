@@ -9,11 +9,16 @@ import {
   useTransform,
 } from 'framer-motion'
 import {
+  Activity,
+  ArrowDown,
   ArrowUpRight,
   CalendarDays,
   MapPinned,
+  Network,
   RailSymbol,
+  Route,
   Search,
+  ShieldCheck,
   Sparkles,
   TrainFront,
 } from 'lucide-react'
@@ -174,10 +179,7 @@ function ScrollRail() {
     <>
       <div className="scroll-rail scroll-rail-desktop" aria-hidden="true">
         <div className="rail-line rail-line-vertical" />
-        <motion.div
-          className="rail-progress rail-progress-vertical"
-          style={{ scaleY: smoothProgress }}
-        />
+        <motion.div className="rail-progress rail-progress-vertical" style={{ scaleY: smoothProgress }} />
         <motion.div className="scroll-train scroll-train-vertical" style={{ y: trainY }}>
           <TrainFront size={15} />
         </motion.div>
@@ -188,10 +190,7 @@ function ScrollRail() {
 
       <div className="scroll-rail scroll-rail-mobile" aria-hidden="true">
         <div className="rail-line rail-line-horizontal" />
-        <motion.div
-          className="rail-progress rail-progress-horizontal"
-          style={{ scaleX: smoothProgress }}
-        />
+        <motion.div className="rail-progress rail-progress-horizontal" style={{ scaleX: smoothProgress }} />
         <motion.div className="scroll-train scroll-train-horizontal" style={{ x: trainX }}>
           <TrainFront size={13} />
         </motion.div>
@@ -254,10 +253,44 @@ function StageStationHeader({
         <span className="station-count">{count}</span>
       </div>
       <span className="stage-station-subtitle">{subtitle}</span>
-      <span className="station-track" aria-hidden="true">
-        <i /><i /><i />
-      </span>
+      <span className="station-track" aria-hidden="true"><i /><i /><i /></span>
     </motion.div>
+  )
+}
+
+function FeaturedProject({ project, rank }: { project: RailwayProject; rank: number }) {
+  return (
+    <motion.article
+      className="featured-project"
+      style={{ '--route-color': project.color } as React.CSSProperties}
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.45 }}
+      transition={{ delay: rank * 0.08, duration: 0.45 }}
+    >
+      <div className="featured-scan" />
+      <div className="featured-topline">
+        <span>0{rank + 1}</span>
+        <span>{typeMeta[project.type].label} · {project.region}</span>
+      </div>
+      <h3>{project.name}</h3>
+      <div className="featured-progress">
+        <strong><CountUp value={project.progressPercent ?? 0} /></strong>
+        <span>官方工程進度</span>
+      </div>
+      <div className="featured-track">
+        <motion.i
+          initial={{ width: 0 }}
+          whileInView={{ width: `${project.progressPercent ?? 0}%` }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: 'easeOut' }}
+        />
+      </div>
+      <p>{project.latestUpdate}</p>
+      <a href={project.source.url} target="_blank" rel="noreferrer">
+        查看官方來源 <ArrowUpRight size={15} />
+      </a>
+    </motion.article>
   )
 }
 
@@ -387,11 +420,21 @@ function App() {
       .filter((group) => group.projects.length > 0)
   }, [filtered])
 
+  const featured = useMemo(
+    () =>
+      projects
+        .filter((project) => project.phase === 'construction' && typeof project.progressPercent === 'number')
+        .sort((a, b) => (b.progressPercent ?? 0) - (a.progressPercent ?? 0))
+        .slice(0, 3),
+    [],
+  )
+
   const stats = useMemo(() => {
     const active = projects.filter((project) => project.phase !== 'operating').length
     const construction = projects.filter((project) => project.phase === 'construction').length
     const withProgress = projects.filter((project) => typeof project.progressPercent === 'number').length
-    return { total: projects.length, active, construction, withProgress }
+    const planning = projects.filter((project) => stageGroupFor(project) === 'planning').length
+    return { total: projects.length, active, construction, withProgress, planning }
   }, [])
 
   return (
@@ -399,6 +442,7 @@ function App() {
       <ScrollRail />
 
       <section className="hero">
+        <div className="hero-grid" aria-hidden="true" />
         <div className="hero-glow hero-glow-one" />
         <div className="hero-glow hero-glow-two" />
         <div className="hero-route hero-route-one" aria-hidden="true" />
@@ -409,44 +453,80 @@ function App() {
             <span className="brand-icon"><RailSymbol size={20} /></span>
             <span>鐵道進行式</span>
           </a>
+          <div className="topbar-status">
+            <span className="live-dot" />
+            <span>OFFICIAL DATA MONITOR</span>
+          </div>
           <span className="unofficial">非官方整理網站</span>
         </nav>
 
-        <div className="hero-compact">
+        <div className="hero-policy">
           <motion.div
             className="hero-copy"
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.48 }}
           >
-            <div className="hero-kicker"><Sparkles size={15} /> Taiwan Rail Projects</div>
-            <h1>台灣鐵道建設，<span>一眼看進度。</span></h1>
-            <p>六都捷運工程機關＋交通部鐵道局官方資料整合。</p>
+            <div className="hero-kicker"><Sparkles size={15} /> TAIWAN RAIL DEVELOPMENT 2026</div>
+            <h1>下一站，<br /><span>正在成形。</span></h1>
+            <p className="hero-lead">
+              從都會捷運、臺鐵立體化到高鐵延伸，持續追蹤台灣正在推進的軌道建設，
+              用公開資料看見交通網路如何一步步連起城市與生活。
+            </p>
+
+            <div className="hero-actions">
+              <a className="primary-action" href="#projects">
+                查看建設進度 <ArrowDown size={16} />
+              </a>
+              <span className="trust-note"><ShieldCheck size={15} /> 官方來源優先・不自行估算進度</span>
+            </div>
           </motion.div>
 
           <motion.div
-            className="hero-source"
-            initial={{ opacity: 0, x: 8 }}
+            className="command-panel"
+            initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.15, duration: 0.4 }}
+            transition={{ delay: 0.12, duration: 0.55 }}
           >
-            <MapPinned size={18} />
-            <span>官方來源優先</span>
+            <div className="command-head">
+              <span><Activity size={15} /> NATIONAL RAIL PULSE</span>
+              <span className="command-state">LIVE</span>
+            </div>
+            <div className="command-main">
+              <strong>{stats.construction}</strong>
+              <span>項工程施工中</span>
+            </div>
+            <div className="command-bars">
+              <i style={{ '--bar': '92%' } as React.CSSProperties} />
+              <i style={{ '--bar': '68%' } as React.CSSProperties} />
+              <i style={{ '--bar': '81%' } as React.CSSProperties} />
+              <i style={{ '--bar': '54%' } as React.CSSProperties} />
+              <i style={{ '--bar': '73%' } as React.CSSProperties} />
+              <i style={{ '--bar': '88%' } as React.CSSProperties} />
+            </div>
+            <div className="command-stats">
+              <div><span>TRACKED</span><strong>{stats.total}</strong></div>
+              <div><span>OFFICIAL %</span><strong>{stats.withProgress}</strong></div>
+              <div><span>PLANNING</span><strong>{stats.planning}</strong></div>
+            </div>
+            <div className="command-network" aria-hidden="true">
+              <span /><span /><span /><span /><span />
+            </div>
           </motion.div>
         </div>
 
         <div className="stats-grid">
           {[
             [stats.total, '收錄計畫'],
-            [stats.active, '推動中'],
-            [stats.construction, '施工中'],
-            [stats.withProgress, '有官方％'],
+            [stats.active, '持續推動'],
+            [stats.construction, '施工階段'],
+            [stats.withProgress, '官方百分比'],
           ].map(([value, label], index) => (
             <motion.div
               key={label}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.08 + index * 0.055 }}
+              transition={{ delay: 0.12 + index * 0.055 }}
             >
               <strong>{value}</strong><span>{label}</span>
             </motion.div>
@@ -454,7 +534,63 @@ function App() {
         </div>
       </section>
 
-      <section className="content">
+      <section className="policy-section">
+        <div className="policy-intro">
+          <span className="section-kicker">WHY RAIL MATTERS</span>
+          <h2>建設的不只是路線，<br />而是下一階段的城市連結。</h2>
+          <p>
+            軌道建設牽動通勤時間、都市發展、區域均衡與公共運輸選擇。
+            本站把分散在各主管機關的工程資訊整理成可追蹤的進度脈絡。
+          </p>
+        </div>
+
+        <div className="policy-pillars">
+          <motion.article initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <span><Network size={20} /></span>
+            <strong>區域連結</strong>
+            <p>跨縣市、跨運具的路網逐步銜接，讓生活圈不再只由行政區界線決定。</p>
+          </motion.article>
+          <motion.article initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: .07 }}>
+            <span><Route size={20} /></span>
+            <strong>通勤升級</strong>
+            <p>新線、延伸線與鐵路立體化，持續改善容量、轉乘與都市交通效率。</p>
+          </motion.article>
+          <motion.article initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: .14 }}>
+            <span><ShieldCheck size={20} /></span>
+            <strong>資訊透明</strong>
+            <p>只使用可追溯官方資訊；有百分比就顯示百分比，沒有就忠實呈現行政階段。</p>
+          </motion.article>
+        </div>
+      </section>
+
+      <section className="featured-section">
+        <div className="featured-heading">
+          <div>
+            <span className="section-kicker">PROJECTS IN FOCUS</span>
+            <h2>接近完工的重點工程</h2>
+          </div>
+          <p>依主管機關公布的整體工程進度排序。</p>
+        </div>
+        <div className="featured-grid">
+          {featured.map((project, index) => (
+            <FeaturedProject key={project.id} project={project} rank={index} />
+          ))}
+        </div>
+      </section>
+
+      <section className="content" id="projects">
+        <div className="board-intro">
+          <div>
+            <span className="section-kicker">PROJECT MONITOR</span>
+            <h2>全台軌道建設進度</h2>
+            <p>從最接近完工的工程一路看到規劃中的下一代路網。</p>
+          </div>
+          <div className="result-summary">
+            <strong>{filtered.length}</strong> / {projects.length}
+            <span>依接近完工程度排列</span>
+          </div>
+        </div>
+
         <div className="toolbar">
           <label className="search-box">
             <Search size={17} />
@@ -503,17 +639,6 @@ function App() {
           </div>
         </div>
 
-        <div className="list-heading">
-          <div>
-            <span className="section-kicker">PROJECT BOARD</span>
-            <h2>全台軌道建設進度</h2>
-          </div>
-          <div className="result-summary">
-            <strong>{filtered.length}</strong> / {projects.length}
-            <span>依接近完工程度排列</span>
-          </div>
-        </div>
-
         <div className="project-list-head" aria-hidden="true">
           <span>計畫</span>
           <span>階段</span>
@@ -558,8 +683,11 @@ function App() {
       </section>
 
       <footer>
-        <strong>鐵道進行式</strong>
-        <span>資料以各主管機關最新公告為準 · GitHub Pages</span>
+        <div>
+          <strong>鐵道進行式</strong>
+          <span>TAIWAN RAIL PROJECTS</span>
+        </div>
+        <span>非官方整理網站 · 資料以各主管機關最新公告為準</span>
       </footer>
     </main>
   )
