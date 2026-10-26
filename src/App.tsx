@@ -13,10 +13,9 @@ import {
   ArrowDown,
   ArrowUpRight,
   CalendarDays,
-  MapPinned,
-  Network,
+  ChevronLeft,
+  ChevronRight,
   RailSymbol,
-  Route,
   Search,
   ShieldCheck,
   Sparkles,
@@ -50,10 +49,21 @@ const phaseShort: Record<ProjectPhase, string> = {
   operating: '通車',
 }
 
-const typeMeta: Record<ProjectType, { label: string; emoji: string }> = {
-  metro: { label: '捷運', emoji: '🚇' },
-  tra: { label: '臺鐵', emoji: '🚆' },
-  hsr: { label: '高鐵', emoji: '🚄' },
+const phaseLong: Record<ProjectPhase, string> = {
+  feasibility: '可行性研究',
+  'comprehensive-planning': '綜合規劃',
+  approved: '計畫核定',
+  design: '設計',
+  tender: '招標',
+  construction: '施工',
+  testing: '測試／試運轉',
+  operating: '通車營運',
+}
+
+const typeMeta: Record<ProjectType, { label: string; code: string }> = {
+  metro: { label: '捷運', code: 'MRT' },
+  tra: { label: '臺鐵', code: 'TRA' },
+  hsr: { label: '高鐵', code: 'HSR' },
 }
 
 const stageMap: Record<StageFilter, ProjectPhase[]> = {
@@ -72,19 +82,19 @@ const stageGroups: Array<{
   {
     key: 'construction',
     title: '施工・測試',
-    subtitle: '工程已進入實體建設、系統測試或通車階段',
+    subtitle: '已經在蓋、測試，或接近通車的工程',
     short: '施工',
   },
   {
     key: 'design',
-    title: '設計・招標',
-    subtitle: '核定後進入設計、招標與開工準備',
+    title: '核定・設計・招標',
+    subtitle: '計畫已往開工方向前進，但還沒進入主要施工',
     short: '設計',
   },
   {
     key: 'planning',
-    title: '規劃・審議',
-    subtitle: '可行性研究、綜合規劃與中央審議階段',
+    title: '可研・綜規',
+    subtitle: '還在研究、規劃或審議中的下一批路線',
     short: '規劃',
   },
 ]
@@ -138,7 +148,7 @@ function compareByCompletion(a: RailwayProject, b: RailwayProject) {
   return a.name.localeCompare(b.name, 'zh-Hant')
 }
 
-function CountUp({ value }: { value: number }) {
+function CountUp({ value, decimals = 2 }: { value: number; decimals?: number }) {
   const ref = useRef<HTMLSpanElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-10%' })
   const reduceMotion = useReducedMotion()
@@ -159,7 +169,7 @@ function CountUp({ value }: { value: number }) {
     return () => controls.stop()
   }, [isInView, reduceMotion, value])
 
-  return <span ref={ref}>{display.toFixed(2)}%</span>
+  return <span ref={ref}>{display.toFixed(decimals)}</span>
 }
 
 function ScrollRail() {
@@ -201,12 +211,13 @@ function ScrollRail() {
 
 function DeckNavigation() {
   return (
-    <nav className="deck-nav" aria-label="簡報章節導覽">
+    <nav className="deck-nav" aria-label="章節導覽">
       {[
-        ['overview', '01', '總覽'],
-        ['vision', '02', '建設願景'],
-        ['focus', '03', '重點工程'],
-        ['projects', '04', '進度監測'],
+        ['overview', '01', '首頁'],
+        ['vision', '02', '怎麼看'],
+        ['snapshot', '03', '現在'],
+        ['focus', '04', '快完工'],
+        ['projects', '05', '全部工程'],
       ].map(([id, number, label]) => (
         <a key={id} href={`#${id}`} title={label}>
           <span>{number}</span>
@@ -231,7 +242,7 @@ function CompactPhase({ project }: { project: RailwayProject }) {
               index < currentIndex ? 'done' : '',
               index === currentIndex ? 'current' : '',
             ].join(' ')}
-            title={phaseShort[phase]}
+            title={phaseLong[phase]}
             initial={{ scaleX: 0.25, opacity: 0.45 }}
             whileInView={{ scaleX: 1, opacity: 1 }}
             viewport={{ once: true, amount: 0.8 }}
@@ -277,42 +288,6 @@ function StageStationHeader({
   )
 }
 
-function FeaturedProject({ project, rank }: { project: RailwayProject; rank: number }) {
-  return (
-    <motion.article
-      className="featured-project"
-      style={{ '--route-color': project.color } as React.CSSProperties}
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.45 }}
-      transition={{ delay: rank * 0.08, duration: 0.45 }}
-    >
-      <div className="featured-scan" />
-      <div className="featured-topline">
-        <span>0{rank + 1}</span>
-        <span>{typeMeta[project.type].label} · {project.region}</span>
-      </div>
-      <h3>{project.name}</h3>
-      <div className="featured-progress">
-        <strong><CountUp value={project.progressPercent ?? 0} /></strong>
-        <span>官方工程進度</span>
-      </div>
-      <div className="featured-track">
-        <motion.i
-          initial={{ width: 0 }}
-          whileInView={{ width: `${project.progressPercent ?? 0}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, ease: 'easeOut' }}
-        />
-      </div>
-      <p>{project.latestUpdate}</p>
-      <a href={project.source.url} target="_blank" rel="noreferrer">
-        查看官方來源 <ArrowUpRight size={15} />
-      </a>
-    </motion.article>
-  )
-}
-
 function ProjectRow({ project, index }: { project: RailwayProject; index: number }) {
   const reduceMotion = useReducedMotion()
   const entryX = reduceMotion ? 0 : index % 2 === 0 ? -18 : 18
@@ -343,7 +318,7 @@ function ProjectRow({ project, index }: { project: RailwayProject; index: number
 
       <div className="project-main">
         <div className="project-title-line">
-          <span className="type-chip">{typeMeta[project.type].emoji} {typeMeta[project.type].label}</span>
+          <span className="type-chip" title={typeMeta[project.type].label}>{typeMeta[project.type].code}</span>
           <h3>{project.name}</h3>
         </div>
         <div className="project-subline">
@@ -361,7 +336,7 @@ function ProjectRow({ project, index }: { project: RailwayProject; index: number
         {typeof project.progressPercent === 'number' ? (
           <div className="compact-progress" aria-label={`官方進度 ${project.progressPercent}%`}>
             <div className="compact-progress-top">
-              <span className="progress-value"><CountUp value={project.progressPercent} /></span>
+              <span className="progress-value"><CountUp value={project.progressPercent} />%</span>
               <span className="progress-source">官方進度</span>
             </div>
             <div className="compact-progress-track">
@@ -412,6 +387,7 @@ function App() {
   const [filter, setFilter] = useState<'all' | ProjectType>('all')
   const [stageFilter, setStageFilter] = useState<StageFilter>('all')
   const [query, setQuery] = useState('')
+  const [spotlightIndex, setSpotlightIndex] = useState(0)
 
   const filtered = useMemo(() => {
     const keyword = query.trim().toLocaleLowerCase('zh-Hant')
@@ -449,12 +425,18 @@ function App() {
   )
 
   const stats = useMemo(() => {
-    const active = projects.filter((project) => project.phase !== 'operating').length
     const construction = projects.filter((project) => project.phase === 'construction').length
     const withProgress = projects.filter((project) => typeof project.progressPercent === 'number').length
     const planning = projects.filter((project) => stageGroupFor(project) === 'planning').length
-    return { total: projects.length, active, construction, withProgress, planning }
+    return { total: projects.length, construction, withProgress, planning }
   }, [])
+
+  const spotlight = featured[spotlightIndex]
+
+  const moveSpotlight = (direction: number) => {
+    if (!featured.length) return
+    setSpotlightIndex((current) => (current + direction + featured.length) % featured.length)
+  }
 
   return (
     <main>
@@ -464,9 +446,7 @@ function App() {
       <section className="hero deck-slide" id="overview">
         <div className="hero-grid" aria-hidden="true" />
         <div className="hero-glow hero-glow-one" />
-        <div className="hero-glow hero-glow-two" />
         <div className="hero-route hero-route-one" aria-hidden="true" />
-        <div className="hero-route hero-route-two" aria-hidden="true" />
 
         <nav className="topbar">
           <a className="brand" href="./">
@@ -475,7 +455,7 @@ function App() {
           </a>
           <div className="topbar-status">
             <span className="live-dot" />
-            <span>OFFICIAL DATA MONITOR</span>
+            <span>OFFICIAL DATA TRACKER</span>
           </div>
           <span className="unofficial">非官方整理網站</span>
         </nav>
@@ -489,126 +469,187 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.48 }}
           >
-            <div className="hero-kicker"><Sparkles size={15} /> TAIWAN RAIL DEVELOPMENT 2026</div>
-            <h1>下一站，<br /><span>正在成形。</span></h1>
+            <div className="hero-kicker"><Sparkles size={15} /> TAIWAN RAIL PROJECT TRACKER</div>
+            <h1>台灣鐵道，<br /><span>現在蓋到哪？</span></h1>
             <p className="hero-lead">
-              從都會捷運、臺鐵立體化到高鐵延伸，持續追蹤台灣正在推進的軌道建設，
-              用公開資料看見交通網路如何一步步連起城市與生活。
+              捷運、臺鐵、高鐵的工程資訊常常散在不同網站。
+              這裡把它們整理在一起，讓你快速看到哪些快完工、哪些正在施工、哪些還在規劃。
             </p>
 
             <div className="hero-actions">
               <a className="primary-action" href="#projects">
-                查看建設進度 <ArrowDown size={16} />
+                直接看進度 <ArrowDown size={16} />
               </a>
-              <span className="trust-note"><ShieldCheck size={15} /> 官方來源優先・不自行估算進度</span>
+              <span className="trust-note"><ShieldCheck size={15} /> 官方來源優先・不自己猜進度</span>
             </div>
           </motion.div>
 
           <motion.div
-            className="command-panel"
+            className="command-panel command-panel-simple"
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.12, duration: 0.55 }}
           >
             <div className="command-head">
-              <span><Activity size={15} /> NATIONAL RAIL PULSE</span>
+              <span><Activity size={15} /> TRACKER STATUS</span>
               <span className="command-state">LIVE</span>
             </div>
             <div className="command-main">
-              <strong>{stats.construction}</strong>
-              <span>項工程施工中</span>
+              <strong>{stats.total}</strong>
+              <span>項計畫持續追蹤</span>
             </div>
             <div className="command-bars">
-              <i style={{ '--bar': '92%' } as React.CSSProperties} />
+              <i style={{ '--bar': '44%' } as React.CSSProperties} />
               <i style={{ '--bar': '68%' } as React.CSSProperties} />
-              <i style={{ '--bar': '81%' } as React.CSSProperties} />
-              <i style={{ '--bar': '54%' } as React.CSSProperties} />
-              <i style={{ '--bar': '73%' } as React.CSSProperties} />
-              <i style={{ '--bar': '88%' } as React.CSSProperties} />
+              <i style={{ '--bar': '53%' } as React.CSSProperties} />
+              <i style={{ '--bar': '84%' } as React.CSSProperties} />
+              <i style={{ '--bar': '62%' } as React.CSSProperties} />
+              <i style={{ '--bar': '76%' } as React.CSSProperties} />
             </div>
             <div className="command-stats">
-              <div><span>TRACKED</span><strong>{stats.total}</strong></div>
-              <div><span>OFFICIAL %</span><strong>{stats.withProgress}</strong></div>
-              <div><span>PLANNING</span><strong>{stats.planning}</strong></div>
-            </div>
-            <div className="command-network" aria-hidden="true">
-              <span /><span /><span /><span /><span />
+              <div><span>施工中</span><strong>{stats.construction}</strong></div>
+              <div><span>有官方％</span><strong>{stats.withProgress}</strong></div>
+              <div><span>規劃中</span><strong>{stats.planning}</strong></div>
             </div>
           </motion.div>
         </div>
+      </section>
 
-        <div className="stats-grid">
-          {[
-            [stats.total, '收錄計畫'],
-            [stats.active, '持續推動'],
-            [stats.construction, '施工階段'],
-            [stats.withProgress, '官方百分比'],
-          ].map(([value, label], index) => (
+      <section className="phase-story-section deck-slide" id="vision">
+        <div className="slide-index slide-index-dark" aria-hidden="true"><span>02</span><i /> HOW TO READ</div>
+        <div className="phase-story-copy">
+          <span className="section-kicker">HOW TO READ THE TRACKER</span>
+          <h2>一條鐵路，<br />通常會走過這 8 站。</h2>
+          <p>
+            有些工程會公布整體進度百分比，有些不會。
+            沒有官方百分比時，我們就只顯示它目前走到哪個階段，不自己換算。
+          </p>
+        </div>
+
+        <div className="phase-story-track">
+          {phaseOrder.map((phase, index) => (
             <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.12 + index * 0.055 }}
+              className="phase-story-stop"
+              key={phase}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.7 }}
+              transition={{ delay: index * 0.055 }}
             >
-              <strong>{value}</strong><span>{label}</span>
+              <span className="phase-story-number">{String(index + 1).padStart(2, '0')}</span>
+              <i />
+              <strong>{phaseShort[phase]}</strong>
+              <small>{phaseLong[phase]}</small>
             </motion.div>
           ))}
         </div>
       </section>
 
-      <section className="policy-section deck-slide" id="vision">
-        <div className="slide-index slide-index-dark" aria-hidden="true"><span>02</span><i /> VISION</div>
-        <div className="policy-intro">
-          <span className="section-kicker">WHY RAIL MATTERS</span>
-          <h2>建設的不只是路線，<br />而是下一階段的城市連結。</h2>
-          <p>
-            軌道建設牽動通勤時間、都市發展、區域均衡與公共運輸選擇。
-            本站把分散在各主管機關的工程資訊整理成可追蹤的進度脈絡。
-          </p>
+      <section className="snapshot-section deck-slide" id="snapshot">
+        <div className="slide-index slide-index-dark" aria-hidden="true"><span>03</span><i /> RIGHT NOW</div>
+        <div className="snapshot-copy">
+          <span className="section-kicker">RIGHT NOW</span>
+          <p>不用先翻完整清單，先看目前整體狀況。</p>
         </div>
 
-        <div className="policy-pillars">
-          <motion.article initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <span><Network size={20} /></span>
-            <strong>區域連結</strong>
-            <p>跨縣市、跨運具的路網逐步銜接，讓生活圈不再只由行政區界線決定。</p>
-          </motion.article>
-          <motion.article initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: .07 }}>
-            <span><Route size={20} /></span>
-            <strong>通勤升級</strong>
-            <p>新線、延伸線與鐵路立體化，持續改善容量、轉乘與都市交通效率。</p>
-          </motion.article>
-          <motion.article initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: .14 }}>
-            <span><ShieldCheck size={20} /></span>
-            <strong>資訊透明</strong>
-            <p>只使用可追溯官方資訊；有百分比就顯示百分比，沒有就忠實呈現行政階段。</p>
-          </motion.article>
+        <div className="snapshot-main">
+          <div className="snapshot-big">
+            <span>現在有</span>
+            <strong><CountUp value={stats.construction} decimals={0} /></strong>
+            <span>項工程在施工階段</span>
+          </div>
+
+          <div className="snapshot-side">
+            <div>
+              <strong><CountUp value={stats.withProgress} decimals={0} /></strong>
+              <span>項計畫有官方進度％可直接追</span>
+            </div>
+            <div>
+              <strong><CountUp value={stats.planning} decimals={0} /></strong>
+              <span>項計畫還在可研／綜規階段</span>
+            </div>
+            <div>
+              <strong><CountUp value={stats.total} decimals={0} /></strong>
+              <span>項計畫目前收錄在本站</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className="featured-section deck-slide" id="focus">
-        <div className="slide-index slide-index-dark" aria-hidden="true"><span>03</span><i /> PROJECTS IN FOCUS</div>
-        <div className="featured-heading">
+      <section className="spotlight-section deck-slide" id="focus">
+        <div className="slide-index slide-index-dark" aria-hidden="true"><span>04</span><i /> NEAR COMPLETION</div>
+        <div className="spotlight-heading">
           <div>
-            <span className="section-kicker">PROJECTS IN FOCUS</span>
-            <h2>接近完工的重點工程</h2>
+            <span className="section-kicker">NEAR COMPLETION</span>
+            <h2>哪些工程最接近完工？</h2>
           </div>
-          <p>依主管機關公布的整體工程進度排序。</p>
+          <p>只比較主管機關有公布整體工程進度百分比的施工案。</p>
         </div>
-        <div className="featured-grid">
-          {featured.map((project, index) => (
-            <FeaturedProject key={project.id} project={project} rank={index} />
-          ))}
+
+        {spotlight && (
+          <motion.div
+            className="spotlight-card"
+            key={spotlight.id}
+            style={{ '--route-color': spotlight.color } as React.CSSProperties}
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.36 }}
+          >
+            <div className="spotlight-info">
+              <div className="spotlight-meta">
+                <span>{typeMeta[spotlight.type].code}</span>
+                <span>{spotlight.region}</span>
+                <span>{spotlight.phaseLabel}</span>
+              </div>
+              <h3>{spotlight.name}</h3>
+              <p>{spotlight.latestUpdate}</p>
+              <a href={spotlight.source.url} target="_blank" rel="noreferrer">
+                官方來源 <ArrowUpRight size={15} />
+              </a>
+            </div>
+
+            <div className="spotlight-progress">
+              <span>官方工程進度</span>
+              <strong><CountUp value={spotlight.progressPercent ?? 0} />%</strong>
+              <div className="spotlight-track">
+                <motion.i
+                  initial={{ width: 0 }}
+                  animate={{ width: `${spotlight.progressPercent ?? 0}%` }}
+                  transition={{ duration: .85, ease: 'easeOut' }}
+                />
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        <div className="spotlight-controls">
+          <div className="spotlight-switches">
+            {featured.map((project, index) => (
+              <button
+                key={project.id}
+                className={index === spotlightIndex ? 'active' : ''}
+                onClick={() => setSpotlightIndex(index)}
+              >
+                <span>0{index + 1}</span>
+                <strong>{project.name}</strong>
+                <small>{project.progressPercent?.toFixed(2)}%</small>
+              </button>
+            ))}
+          </div>
+          <div className="spotlight-arrows">
+            <button onClick={() => moveSpotlight(-1)} aria-label="上一個重點工程"><ChevronLeft size={18} /></button>
+            <button onClick={() => moveSpotlight(1)} aria-label="下一個重點工程"><ChevronRight size={18} /></button>
+          </div>
         </div>
       </section>
 
       <section className="content deck-slide deck-slide-projects" id="projects">
-        <div className="slide-index slide-index-dark" aria-hidden="true"><span>04</span><i /> PROJECT MONITOR</div>
+        <div className="slide-index slide-index-dark" aria-hidden="true"><span>05</span><i /> ALL PROJECTS</div>
         <div className="board-intro">
           <div>
-            <span className="section-kicker">PROJECT MONITOR</span>
-            <h2>全台軌道建設進度</h2>
-            <p>從最接近完工的工程一路看到規劃中的下一代路網。</p>
+            <span className="section-kicker">ALL PROJECTS</span>
+            <h2>全部工程進度</h2>
+            <p>從快完工的一路往下看，或直接搜尋你關心的路線。</p>
           </div>
           <div className="result-summary">
             <strong>{filtered.length}</strong> / {projects.length}
@@ -631,9 +672,9 @@ function App() {
             <div className="filters" role="group" aria-label="依鐵路類型篩選">
               {([
                 ['all', '全部'],
-                ['metro', '🚇 捷運'],
-                ['tra', '🚆 臺鐵'],
-                ['hsr', '🚄 高鐵'],
+                ['metro', '捷運'],
+                ['tra', '臺鐵'],
+                ['hsr', '高鐵'],
               ] as const).map(([value, label]) => (
                 <button
                   key={value}
@@ -702,7 +743,7 @@ function App() {
         <aside className="method-card">
           <div className="method-icon"><RailSymbol size={21} /></div>
           <p>
-            只有主管機關明確公布整體百分比時才顯示％；其餘以可研、綜規、核定、設計、招標、施工、測試與通車階段呈現。
+            只有主管機關明確公布整體百分比時才顯示％；其他計畫只呈現可驗證的行政／工程階段。
           </p>
         </aside>
       </section>
