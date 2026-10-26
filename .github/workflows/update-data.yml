@@ -1,0 +1,48 @@
+name: Check official railway data
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 每週一 08:10（台灣時間）
+    - cron: '10 0 * * 1'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Check Taoyuan official progress
+        run: node scripts/update-taoyuan.mjs
+
+      - name: Create or update review Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: 'data: update official railway progress'
+          branch: bot/official-data-update
+          delete-branch: true
+          title: '官方鐵道進度自動更新'
+          body: |
+            此 PR 由 GitHub Actions 自動產生。
+
+            - 來源：桃園市政府捷運工程局「軌道建設進度總覽」
+            - 更新方式：只更新通過格式與合理性驗證的官方百分比
+            - 安全機制：若官方頁面格式改變、抓不到數字、百分比超出 0–100，或進度異常大幅倒退，workflow 會失敗並保留原資料
+            - 請確認變更內容後再 Merge
+
+            Merge 後網站會由 GitHub Pages workflow 自動重新部署。
+          labels: |
+            automated-data
+            official-source
+          add-paths: |
+            src/data/projects.json
