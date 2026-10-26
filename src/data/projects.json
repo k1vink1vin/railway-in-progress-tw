@@ -704,15 +704,17 @@
     "color": "#8E44AD",
     "phase": "construction",
     "phaseLabel": "施工中",
-    "progressNote": "交通部鐵道局列為施工中路網建設。",
-    "latestUpdate": "持續施工。",
+    "progressNote": "交通部鐵道局工程進度：目前進度88.73%，統計截至115/08/31。",
+    "latestUpdate": "工程進度88.73%，A22站已通車，後續延伸工程持續施工。",
     "lastCheckedAt": "2026-10-26",
     "description": "機場捷運由A22向中壢車站延伸。",
     "source": {
       "agency": "交通部鐵道局",
-      "title": "鐵路路網建設",
-      "url": "https://www.rb.gov.tw/zh-TW/main/"
-    }
+      "title": "機場捷運延伸中壢火車站計畫",
+      "url": "https://www.rb.gov.tw/zh-TW/main/main_28/20250505_152320/20251104_133945/20250505_152539/",
+      "officialUpdatedAt": "2026-08-31"
+    },
+    "progressPercent": 88.73
   },
   {
     "id": "rb-airport-a14",
@@ -723,15 +725,17 @@
     "color": "#8E44AD",
     "phase": "construction",
     "phaseLabel": "施工中",
-    "progressNote": "交通部鐵道局列為施工中路網建設。",
-    "latestUpdate": "持續施工。",
+    "progressNote": "交通部鐵道局工程進度：目前進度75.97%，統計截至115/08/31。",
+    "latestUpdate": "A14站土建與機電工程持續施工。",
     "lastCheckedAt": "2026-10-26",
     "description": "機場捷運增設A14站計畫。",
     "source": {
       "agency": "交通部鐵道局",
-      "title": "鐵路路網建設",
-      "url": "https://www.rb.gov.tw/zh-TW/main/"
-    }
+      "title": "機場捷運增設A14站計畫",
+      "url": "https://www.rb.gov.tw/zh-TW/main/main_28/20250505_152320/20251104_133945/20250505_152849/",
+      "officialUpdatedAt": "2026-08-31"
+    },
+    "progressPercent": 75.97
   },
   {
     "id": "tra-huadong-double",
@@ -742,15 +746,17 @@
     "color": "#2C68B1",
     "phase": "construction",
     "phaseLabel": "施工中",
-    "progressNote": "交通部鐵道局列為施工中路網建設。",
-    "latestUpdate": "工程持續推進。",
+    "progressNote": "交通部鐵道局工程進度：目前進度48.75%，統計截至115/08/31。",
+    "latestUpdate": "花東雙軌電氣化整體工程進度48.75%。",
     "lastCheckedAt": "2026-10-26",
     "description": "提升花東鐵路容量與營運韌性的雙軌電氣化建設。",
     "source": {
       "agency": "交通部鐵道局",
-      "title": "鐵路路網建設",
-      "url": "https://www.rb.gov.tw/zh-TW/main/"
-    }
+      "title": "花東地區鐵路雙軌電氣化計畫",
+      "url": "https://www.rb.gov.tw/zh-TW/main/main_28/20250505_152320/20251104_133945/20250505_152601/",
+      "officialUpdatedAt": "2026-08-31"
+    },
+    "progressPercent": 48.75
   },
   {
     "id": "tra-sea-double",
@@ -818,15 +824,16 @@
     "color": "#355C9A",
     "phase": "construction",
     "phaseLabel": "施工中",
-    "progressPercent": 37.22,
-    "progressNote": "桃園捷運工程局軌道建設進度總覽同步公布總進度37.22%；主辦機關為交通部鐵道局。",
-    "latestUpdate": "鐵道局列為施工中立體化建設。",
+    "progressPercent": 37.52,
+    "progressNote": "交通部鐵道局工程進度：目前進度37.52%，統計截至115/08/31。",
+    "latestUpdate": "桃園鐵路地下化整體工程進度37.52%。",
     "lastCheckedAt": "2026-10-26",
     "description": "桃園都會區臺鐵地下化建設。",
     "source": {
       "agency": "交通部鐵道局",
-      "title": "鐵路立體化建設",
-      "url": "https://www.rb.gov.tw/zh-TW/main/"
+      "title": "臺鐵都會區捷運化桃園段地下化建設計畫",
+      "url": "https://www.rb.gov.tw/zh-TW/main/main_28/20250505_152338/20251104_135332/20250505_153050/",
+      "officialUpdatedAt": "2026-08-31"
     }
   },
   {
@@ -838,15 +845,17 @@
     "color": "#355C9A",
     "phase": "construction",
     "phaseLabel": "施工中",
-    "progressNote": "交通部鐵道局列為施工中立體化建設。",
-    "latestUpdate": "持續施工。",
+    "progressNote": "交通部鐵道局工程進度：目前進度99.16%，統計截至115/08/31。",
+    "latestUpdate": "平鎮臨時站工程進度99.16%，接近完工。",
     "lastCheckedAt": "2026-10-26",
     "description": "配合桃園鐵路地下化前之平鎮臨時站建設。",
     "source": {
       "agency": "交通部鐵道局",
-      "title": "鐵路立體化建設",
-      "url": "https://www.rb.gov.tw/zh-TW/main/"
-    }
+      "title": "增設臺鐵平鎮臨時站建設計畫",
+      "url": "https://www.rb.gov.tw/zh-TW/main/main_28/20250505_152338/20251104_135332/20250505_153017/",
+      "officialUpdatedAt": "2026-08-31"
+    },
+    "progressPercent": 99.16
   },
   {
     "id": "tra-chiayi-elevated",
@@ -857,15 +866,17 @@
     "color": "#355C9A",
     "phase": "construction",
     "phaseLabel": "施工中",
-    "progressNote": "交通部鐵道局列為施工中立體化建設。",
-    "latestUpdate": "持續施工。",
+    "progressNote": "交通部鐵道局工程進度：目前進度62.64%，統計截至115/07/31。",
+    "latestUpdate": "嘉義市區鐵路高架化工程進度62.64%。",
     "lastCheckedAt": "2026-10-26",
     "description": "嘉義市區鐵路高架化計畫。",
     "source": {
       "agency": "交通部鐵道局",
-      "title": "鐵路立體化建設",
-      "url": "https://www.rb.gov.tw/zh-TW/main/"
-    }
+      "title": "嘉義市區鐵路高架化計畫",
+      "url": "https://www.rb.gov.tw/zh-TW/main/main_28/20250505_152338/20251104_135332/20250505_153101/",
+      "officialUpdatedAt": "2026-07-31"
+    },
+    "progressPercent": 62.64
   },
   {
     "id": "tra-chiayi-minxiong",
@@ -876,15 +887,17 @@
     "color": "#355C9A",
     "phase": "construction",
     "phaseLabel": "施工中",
-    "progressNote": "交通部鐵道局列為施工中立體化建設。",
-    "latestUpdate": "持續施工。",
+    "progressNote": "交通部鐵道局工程進度：目前進度11.80%，統計截至115/08/31。",
+    "latestUpdate": "嘉義縣市鐵路高架化延伸計畫進度11.80%。",
     "lastCheckedAt": "2026-10-26",
     "description": "嘉義鐵路高架化向民雄延伸。",
     "source": {
       "agency": "交通部鐵道局",
-      "title": "鐵路立體化建設",
-      "url": "https://www.rb.gov.tw/zh-TW/main/"
-    }
+      "title": "嘉義縣市鐵路高架化延伸計畫",
+      "url": "https://www.rb.gov.tw/zh-TW/main/main_28/20250505_152338/20251104_135332/20250505_153111/",
+      "officialUpdatedAt": "2026-08-31"
+    },
+    "progressPercent": 11.8
   },
   {
     "id": "tra-tainan-underground",
@@ -895,15 +908,17 @@
     "color": "#355C9A",
     "phase": "construction",
     "phaseLabel": "施工中",
-    "progressNote": "交通部鐵道局列為施工中立體化建設。",
-    "latestUpdate": "持續施工。",
+    "progressNote": "交通部鐵道局工程進度：目前進度85.71%，統計截至115/08/31。",
+    "latestUpdate": "臺南市區鐵路地下化工程進度85.71%，已進入通車前最後階段。",
     "lastCheckedAt": "2026-10-26",
     "description": "臺南市區臺鐵地下化計畫。",
     "source": {
       "agency": "交通部鐵道局",
-      "title": "鐵路立體化建設",
-      "url": "https://www.rb.gov.tw/zh-TW/main/"
-    }
+      "title": "臺南市區鐵路地下化計畫",
+      "url": "https://www.rb.gov.tw/zh-TW/main/main_28/20250505_152338/20251104_135332/20250505_153035/",
+      "officialUpdatedAt": "2026-08-31"
+    },
+    "progressPercent": 85.71
   },
   {
     "id": "tra-kaohsiung-underground",
@@ -913,16 +928,18 @@
     "agency": "交通部鐵道局",
     "color": "#355C9A",
     "phase": "construction",
-    "phaseLabel": "施工中專區",
-    "progressNote": "交通部鐵道局仍列於施工中立體化建設。",
-    "latestUpdate": "依鐵道局專區持續辦理相關工程。",
+    "phaseLabel": "施工中",
+    "progressNote": "交通部鐵道局工程進度：目前進度90.32%，統計截至115/08/31。",
+    "latestUpdate": "高雄市區鐵路地下化整體進度90.32%。",
     "lastCheckedAt": "2026-10-26",
     "description": "高雄市區鐵路地下化相關建設。",
     "source": {
       "agency": "交通部鐵道局",
-      "title": "鐵路立體化建設",
-      "url": "https://www.rb.gov.tw/zh-TW/main/"
-    }
+      "title": "高雄市區鐵路地下化計畫（含左營及鳳山）",
+      "url": "https://www.rb.gov.tw/zh-TW/main/main_28/20250505_152338/20251104_135332/20250505_153007/",
+      "officialUpdatedAt": "2026-08-31"
+    },
+    "progressPercent": 90.32
   },
   {
     "id": "tra-yilan-elevated",
