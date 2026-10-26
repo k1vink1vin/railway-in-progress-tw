@@ -7,11 +7,14 @@ import {
   Clock3,
   MapPinned,
   RailSymbol,
+  Search,
   Sparkles,
   TrainFront,
 } from 'lucide-react'
 import { projects } from './data/projects'
 import type { ProjectPhase, ProjectType, RailwayProject } from './types'
+
+type StageFilter = 'all' | 'planning' | 'design' | 'construction'
 
 const phaseOrder: ProjectPhase[] = [
   'feasibility',
@@ -39,6 +42,13 @@ const typeMeta: Record<ProjectType, { label: string; emoji: string }> = {
   metro: { label: '捷運', emoji: '🚇' },
   tra: { label: '臺鐵', emoji: '🚆' },
   hsr: { label: '高鐵', emoji: '🚄' },
+}
+
+const stageMap: Record<StageFilter, ProjectPhase[]> = {
+  all: phaseOrder,
+  planning: ['feasibility', 'comprehensive-planning'],
+  design: ['approved', 'design', 'tender'],
+  construction: ['construction', 'testing', 'operating'],
 }
 
 function ProjectCard({ project }: { project: RailwayProject }) {
@@ -129,11 +139,23 @@ function ProjectCard({ project }: { project: RailwayProject }) {
 
 function App() {
   const [filter, setFilter] = useState<'all' | ProjectType>('all')
+  const [stageFilter, setStageFilter] = useState<StageFilter>('all')
+  const [query, setQuery] = useState('')
 
-  const filtered = useMemo(
-    () => filter === 'all' ? projects : projects.filter((project) => project.type === filter),
-    [filter],
-  )
+  const filtered = useMemo(() => {
+    const keyword = query.trim().toLocaleLowerCase('zh-Hant')
+    return projects.filter((project) => {
+      const typeMatched = filter === 'all' || project.type === filter
+      const stageMatched = stageMap[stageFilter].includes(project.phase)
+      const keywordMatched =
+        !keyword ||
+        [project.name, project.region, project.agency, project.phaseLabel]
+          .join(' ')
+          .toLocaleLowerCase('zh-Hant')
+          .includes(keyword)
+      return typeMatched && stageMatched && keywordMatched
+    })
+  }, [filter, stageFilter, query])
 
   const stats = useMemo(() => {
     const active = projects.filter((project) => project.phase !== 'operating').length
@@ -202,22 +224,58 @@ function App() {
             <h2>全台軌道建設進度</h2>
             <p>有官方百分比就顯示百分比；沒有的計畫只呈現可驗證的行政／工程階段。</p>
           </div>
-          <div className="filters" role="group" aria-label="依鐵路類型篩選">
-            {([
-              ['all', '全部'],
-              ['metro', '🚇 捷運'],
-              ['tra', '🚆 臺鐵'],
-              ['hsr', '🚄 高鐵'],
-            ] as const).map(([value, label]) => (
-              <button
-                key={value}
-                className={filter === value ? 'active' : ''}
-                onClick={() => setFilter(value)}
-              >
-                {label}
-              </button>
-            ))}
+        </div>
+
+        <div className="filter-panel">
+          <label className="search-box">
+            <Search size={18} />
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="搜尋路線、地區或主管機關"
+              aria-label="搜尋鐵道建設計畫"
+            />
+          </label>
+
+          <div className="filter-stack">
+            <div className="filters" role="group" aria-label="依鐵路類型篩選">
+              {([
+                ['all', '全部'],
+                ['metro', '🚇 捷運'],
+                ['tra', '🚆 臺鐵'],
+                ['hsr', '🚄 高鐵'],
+              ] as const).map(([value, label]) => (
+                <button
+                  key={value}
+                  className={filter === value ? 'active' : ''}
+                  onClick={() => setFilter(value)}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            <div className="filters filters-secondary" role="group" aria-label="依建設階段篩選">
+              {([
+                ['all', '所有階段'],
+                ['planning', '規劃／審議'],
+                ['design', '設計／招標'],
+                ['construction', '施工／通車'],
+              ] as const).map(([value, label]) => (
+                <button
+                  key={value}
+                  className={stageFilter === value ? 'active' : ''}
+                  onClick={() => setStageFilter(value)}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
           </div>
+        </div>
+
+        <div className="result-summary">
+          顯示 <strong>{filtered.length}</strong> / {projects.length} 項計畫
         </div>
 
         <div className="project-grid">
@@ -226,12 +284,20 @@ function App() {
               key={project.id}
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.045 }}
+              transition={{ delay: Math.min(index, 10) * 0.035 }}
             >
               <ProjectCard project={project} />
             </motion.div>
           ))}
         </div>
+
+        {filtered.length === 0 && (
+          <div className="empty-state">
+            <RailSymbol size={28} />
+            <strong>找不到符合條件的計畫</strong>
+            <span>試著清除搜尋文字或切換篩選條件。</span>
+          </div>
+        )}
 
         <aside className="method-card">
           <div className="method-icon"><RailSymbol size={24} /></div>
