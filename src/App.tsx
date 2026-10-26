@@ -21,6 +21,7 @@ import { projects } from './data/projects'
 import type { ProjectPhase, ProjectType, RailwayProject } from './types'
 
 type StageFilter = 'all' | 'planning' | 'design' | 'construction'
+type StageGroupKey = Exclude<StageFilter, 'all'>
 
 const phaseOrder: ProjectPhase[] = [
   'feasibility',
@@ -55,6 +56,38 @@ const stageMap: Record<StageFilter, ProjectPhase[]> = {
   planning: ['feasibility', 'comprehensive-planning'],
   design: ['approved', 'design', 'tender'],
   construction: ['construction', 'testing', 'operating'],
+}
+
+const stageGroups: Array<{
+  key: StageGroupKey
+  title: string
+  subtitle: string
+  short: string
+}> = [
+  {
+    key: 'construction',
+    title: '施工・測試',
+    subtitle: '工程已進入實體建設、系統測試或通車階段',
+    short: '施工',
+  },
+  {
+    key: 'design',
+    title: '設計・招標',
+    subtitle: '核定後進入設計、招標與開工準備',
+    short: '設計',
+  },
+  {
+    key: 'planning',
+    title: '規劃・審議',
+    subtitle: '可行性研究、綜合規劃與中央審議階段',
+    short: '規劃',
+  },
+]
+
+function stageGroupFor(project: RailwayProject): StageGroupKey {
+  if (stageMap.construction.includes(project.phase)) return 'construction'
+  if (stageMap.design.includes(project.phase)) return 'design'
+  return 'planning'
 }
 
 const completionRank: Record<ProjectPhase, number> = {
@@ -193,6 +226,41 @@ function CompactPhase({ project }: { project: RailwayProject }) {
   )
 }
 
+function StageStationHeader({
+  title,
+  subtitle,
+  short,
+  count,
+}: {
+  title: string
+  subtitle: string
+  short: string
+  count: number
+}) {
+  const reduceMotion = useReducedMotion()
+
+  return (
+    <motion.div
+      className="stage-station"
+      initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ amount: 0.8 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+    >
+      <div className="stage-station-sign">
+        <span className="station-dot" />
+        <span className="station-short">{short}</span>
+        <strong>{title}</strong>
+        <span className="station-count">{count}</span>
+      </div>
+      <span className="stage-station-subtitle">{subtitle}</span>
+      <span className="station-track" aria-hidden="true">
+        <i /><i /><i />
+      </span>
+    </motion.div>
+  )
+}
+
 function ProjectRow({ project, index }: { project: RailwayProject; index: number }) {
   const reduceMotion = useReducedMotion()
   const entryX = reduceMotion ? 0 : index % 2 === 0 ? -18 : 18
@@ -309,6 +377,15 @@ function App() {
       })
       .sort(compareByCompletion)
   }, [filter, stageFilter, query])
+
+  const grouped = useMemo(() => {
+    return stageGroups
+      .map((group) => ({
+        ...group,
+        projects: filtered.filter((project) => stageGroupFor(project) === group.key),
+      }))
+      .filter((group) => group.projects.length > 0)
+  }, [filtered])
 
   const stats = useMemo(() => {
     const active = projects.filter((project) => project.phase !== 'operating').length
@@ -445,9 +522,22 @@ function App() {
           <span />
         </div>
 
-        <motion.div className="project-list" layout>
-          {filtered.map((project, index) => (
-            <ProjectRow key={project.id} project={project} index={index} />
+        <motion.div className="stage-groups" layout>
+          {grouped.map((group) => (
+            <section className="stage-group" key={group.key}>
+              <StageStationHeader
+                title={group.title}
+                subtitle={group.subtitle}
+                short={group.short}
+                count={group.projects.length}
+              />
+
+              <motion.div className="project-list" layout>
+                {group.projects.map((project, index) => (
+                  <ProjectRow key={project.id} project={project} index={index} />
+                ))}
+              </motion.div>
+            </section>
           ))}
         </motion.div>
 
