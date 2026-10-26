@@ -2599,3 +2599,225 @@ footer > div span {
   }
 }
 
+/* =========================================================
+   SLIDE COLOR STORIES — each slide has its own metro palette
+   ========================================================= */
+.deck-slide {
+  --slide-a: var(--metro-blue);
+  --slide-b: var(--metro-purple);
+  --slide-glow-a: rgba(59,142,219,.12);
+  --slide-glow-b: rgba(140,103,217,.08);
+}
+
+#overview {
+  --slide-a: var(--metro-blue);
+  --slide-b: var(--metro-purple);
+  --slide-glow-a: rgba(59,142,219,.15);
+  --slide-glow-b: rgba(140,103,217,.10);
+}
+
+#vision {
+  --slide-a: var(--metro-green);
+  --slide-b: var(--metro-yellow);
+  --slide-glow-a: rgba(63,185,107,.10);
+  --slide-glow-b: rgba(243,197,29,.08);
+  background:
+    radial-gradient(circle at 12% 18%, var(--slide-glow-a), transparent 25%),
+    radial-gradient(circle at 88% 76%, var(--slide-glow-b), transparent 26%),
+    linear-gradient(180deg, #050607 0%, #080a0b 100%);
+}
+
+#focus {
+  --slide-a: var(--metro-red);
+  --slide-b: var(--metro-orange);
+  --slide-glow-a: rgba(232,75,75,.10);
+  --slide-glow-b: rgba(242,140,40,.08);
+  background:
+    radial-gradient(circle at 84% 15%, var(--slide-glow-a), transparent 26%),
+    radial-gradient(circle at 16% 84%, var(--slide-glow-b), transparent 24%),
+    linear-gradient(180deg, #080808 0%, #0a0908 100%);
+}
+
+#projects {
+  --slide-a: var(--metro-blue);
+  --slide-b: var(--metro-green);
+  --slide-glow-a: rgba(59,142,219,.08);
+  --slide-glow-b: rgba(63,185,107,.06);
+  background:
+    radial-gradient(circle at 50% 0%, var(--slide-glow-a), transparent 26%),
+    radial-gradient(circle at 90% 38%, var(--slide-glow-b), transparent 22%),
+    linear-gradient(180deg, #060708 0%, #050607 100%);
+}
+
+.deck-slide {
+  box-shadow: inset 0 -1px rgba(255,255,255,.035);
+}
+
+.deck-slide::before {
+  pointer-events: none;
+}
+
+#vision,
+#focus,
+#projects {
+  isolation: isolate;
+}
+
+#vision::after,
+#focus::before,
+#projects::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .9;
+}
+
+#vision::after {
+  inset: 7% 5% 8% auto;
+  width: 34%;
+  border-top: 1px solid color-mix(in srgb, var(--slide-a) 24%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--slide-b) 22%, transparent);
+  border-radius: 0 70px 0 0;
+}
+
+#focus::before {
+  inset: auto auto 9% 5%;
+  width: 38%;
+  height: 70px;
+  border-bottom: 1px solid color-mix(in srgb, var(--slide-a) 24%, transparent);
+  border-left: 1px solid color-mix(in srgb, var(--slide-b) 22%, transparent);
+  border-radius: 0 0 0 64px;
+}
+
+#projects::after {
+  top: 56px;
+  left: 22px;
+  right: 22px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--metro-red),
+    var(--metro-orange),
+    var(--metro-yellow),
+    var(--metro-green),
+    var(--metro-blue),
+    var(--metro-purple),
+    transparent
+  );
+  opacity: .24;
+}
+
+.slide-index-dark i {
+  background: linear-gradient(90deg, var(--slide-a), var(--slide-b));
+  box-shadow: 0 0 14px color-mix(in srgb, var(--slide-a) 24%, transparent);
+}
+
+#vision .section-kicker {
+  color: color-mix(in srgb, var(--slide-a) 72%, white);
+}
+
+#focus .section-kicker {
+  color: color-mix(in srgb, var(--slide-a) 78%, white);
+}
+
+#projects .section-kicker {
+  color: color-mix(in srgb, var(--slide-a) 72%, white);
+}
+
+#vision .policy-intro h2 {
+  text-shadow: 0 0 32px rgba(63,185,107,.05);
+}
+
+#focus .featured-heading h2 {
+  text-shadow: 0 0 32px rgba(232,75,75,.05);
+}
+
+#projects .board-intro h2 {
+  text-shadow: 0 0 30px rgba(59,142,219,.05);
+}
+
+/* Vision slide: metro-colored policy cards */
+#vision .policy-pillars article {
+  position: relative;
+  overflow: hidden;
+}
+
+#vision .policy-pillars article::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+}
+
+#vision .policy-pillars article:nth-child(1)::after {
+  background: linear-gradient(90deg, var(--metro-green), var(--metro-blue));
+}
+
+#vision .policy-pillars article:nth-child(2)::after {
+  background: linear-gradient(90deg, var(--metro-yellow), var(--metro-orange));
+}
+
+#vision .policy-pillars article:nth-child(3)::after {
+  background: linear-gradient(90deg, var(--metro-purple), var(--metro-red));
+}
+
+/* Focus slide: red/orange spotlight, route colors remain authoritative */
+#focus .featured-project {
+  box-shadow:
+    0 24px 58px rgba(0,0,0,.28),
+    0 0 0 1px color-mix(in srgb, var(--route-color) 8%, transparent);
+}
+
+#focus .featured-project:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--route-color) 34%, rgba(255,255,255,.1));
+}
+
+/* Project monitor: full network spectrum */
+#projects .toolbar {
+  box-shadow:
+    0 16px 38px rgba(0,0,0,.16),
+    inset 0 -1px rgba(255,255,255,.025);
+}
+
+#projects .stage-station {
+  box-shadow:
+    0 14px 32px rgba(0,0,0,.24),
+    0 0 0 1px color-mix(in srgb, var(--slide-a) 3%, transparent);
+}
+
+/* slide navigation gains per-page metro colors */
+.deck-nav a:nth-child(1):hover i { background: var(--metro-blue); }
+.deck-nav a:nth-child(2):hover i { background: var(--metro-green); }
+.deck-nav a:nth-child(3):hover i { background: var(--metro-red); }
+.deck-nav a:nth-child(4):hover i {
+  background: linear-gradient(90deg, var(--metro-blue), var(--metro-purple));
+}
+
+/* smoother page-to-page visual handoff */
+@media (min-width: 901px) {
+  .deck-slide {
+    transition:
+      background-color .55s ease,
+      box-shadow .55s ease;
+  }
+}
+
+@media (max-width: 900px) {
+  #vision,
+  #focus,
+  #projects {
+    background-attachment: scroll;
+  }
+
+  #vision::after,
+  #focus::before,
+  #projects::after {
+    opacity: .55;
+  }
+}
+
