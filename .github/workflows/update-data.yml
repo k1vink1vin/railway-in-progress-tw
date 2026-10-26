@@ -25,6 +25,9 @@ jobs:
       - name: Check Taoyuan official progress
         run: node scripts/update-taoyuan.mjs
 
+      - name: Check Railway Bureau official progress
+        run: node scripts/update-railway-bureau.mjs
+
       - name: Create or update review Pull Request
         uses: peter-evans/create-pull-request@v8
         with:
@@ -36,6 +39,7 @@ jobs:
             此 PR 由 GitHub Actions 自動產生。
 
             - 來源：桃園市政府捷運工程局「軌道建設進度總覽」
+            - 來源：交通部鐵道局各計畫「工程進度」
             - 更新方式：只更新通過格式與合理性驗證的官方百分比
             - 安全機制：若官方頁面格式改變、抓不到數字、百分比超出 0–100，或進度異常大幅倒退，workflow 會失敗並保留原資料
             - 請確認變更內容後再 Merge
