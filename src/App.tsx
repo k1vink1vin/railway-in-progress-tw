@@ -3,13 +3,10 @@ import { motion } from 'framer-motion'
 import {
   ArrowUpRight,
   CalendarDays,
-  CheckCircle2,
-  Clock3,
   MapPinned,
   RailSymbol,
   Search,
   Sparkles,
-  TrainFront,
 } from 'lucide-react'
 import { projects } from './data/projects'
 import type { ProjectPhase, ProjectType, RailwayProject } from './types'
@@ -75,11 +72,11 @@ function compareByCompletion(a: RailwayProject, b: RailwayProject) {
     const aHasProgress = typeof a.progressPercent === 'number'
     const bHasProgress = typeof b.progressPercent === 'number'
 
-    if (aHasProgress && bHasProgress) {
-      if (b.progressPercent !== a.progressPercent) {
-        return b.progressPercent! - a.progressPercent!
-      }
-    } else if (aHasProgress !== bHasProgress) {
+    if (aHasProgress && bHasProgress && b.progressPercent !== a.progressPercent) {
+      return b.progressPercent! - a.progressPercent!
+    }
+
+    if (aHasProgress !== bHasProgress) {
       return aHasProgress ? -1 : 1
     }
   }
@@ -94,88 +91,91 @@ function compareByCompletion(a: RailwayProject, b: RailwayProject) {
   return a.name.localeCompare(b.name, 'zh-Hant')
 }
 
-function ProjectCard({ project }: { project: RailwayProject }) {
+function CompactPhase({ project }: { project: RailwayProject }) {
   const currentIndex = phaseOrder.indexOf(project.phase)
 
   return (
+    <div className="compact-phase" aria-label={`目前階段：${project.phaseLabel}`}>
+      <div className="stage-segments">
+        {phaseOrder.map((phase, index) => (
+          <span
+            key={phase}
+            className={[
+              index < currentIndex ? 'done' : '',
+              index === currentIndex ? 'current' : '',
+            ].join(' ')}
+            title={phaseShort[phase]}
+          />
+        ))}
+      </div>
+      <span className="stage-current">{project.phaseLabel}</span>
+    </div>
+  )
+}
+
+function ProjectRow({ project }: { project: RailwayProject }) {
+  return (
     <motion.article
-      className="project-card"
-      whileHover={{ y: -5 }}
-      transition={{ type: 'spring', stiffness: 320, damping: 24 }}
+      className="project-row"
+      whileHover={{ x: 3 }}
+      transition={{ type: 'spring', stiffness: 340, damping: 26 }}
       style={{ '--route-color': project.color } as React.CSSProperties}
     >
       <div className="route-stripe" />
-      <div className="card-head">
-        <div>
-          <div className="eyebrow">
-            <span>{typeMeta[project.type].emoji} {typeMeta[project.type].label}</span>
-            <span>·</span>
-            <span>{project.region}</span>
-          </div>
+
+      <div className="project-main">
+        <div className="project-title-line">
+          <span className="type-chip">{typeMeta[project.type].emoji} {typeMeta[project.type].label}</span>
           <h3>{project.name}</h3>
         </div>
+        <div className="project-subline">
+          <span>{project.region}</span>
+          <span>·</span>
+          <span>{project.agency}</span>
+        </div>
+      </div>
+
+      <div className="project-stage">
         <span className="phase-badge">{project.phaseLabel}</span>
       </div>
 
-      <p className="latest-update">{project.latestUpdate}</p>
-
-      {typeof project.progressPercent === 'number' ? (
-        <div className="progress-block" aria-label={`官方進度 ${project.progressPercent}%`}>
-          <div className="progress-label-row">
-            <span>官方公布進度</span>
-            <strong>{project.progressPercent.toFixed(2)}%</strong>
-          </div>
-          <div className="progress-track">
-            <motion.div
-              className="progress-fill"
-              initial={{ width: 0 }}
-              animate={{ width: `${project.progressPercent}%` }}
-              transition={{ duration: 0.9, ease: 'easeOut' }}
-            />
-            <motion.div
-              className="train-marker"
-              initial={{ left: 0 }}
-              animate={{ left: `calc(${project.progressPercent}% - 14px)` }}
-              transition={{ duration: 0.9, ease: 'easeOut' }}
-            >
-              <TrainFront size={17} />
-            </motion.div>
-          </div>
-        </div>
-      ) : (
-        <div className="phase-track" aria-label={`目前階段：${project.phaseLabel}`}>
-          {phaseOrder.map((phase, index) => (
-            <div className="phase-step" key={phase}>
-              <span
-                className={[
-                  'phase-dot',
-                  index < currentIndex ? 'done' : '',
-                  index === currentIndex ? 'current' : '',
-                ].join(' ')}
-              >
-                {index < currentIndex ? <CheckCircle2 size={14} /> : index + 1}
-              </span>
-              <small>{phaseShort[phase]}</small>
+      <div className="project-progress">
+        {typeof project.progressPercent === 'number' ? (
+          <div className="compact-progress" aria-label={`官方進度 ${project.progressPercent}%`}>
+            <div className="compact-progress-top">
+              <span className="progress-value">{project.progressPercent.toFixed(2)}%</span>
+              <span className="progress-source">官方進度</span>
             </div>
-          ))}
-        </div>
-      )}
-
-      <p className="progress-note">{project.progressNote}</p>
-
-      <div className="card-meta">
-        <span><CalendarDays size={15} /> 檢查：{project.lastCheckedAt}</span>
-        {project.expectedCompletion && (
-          <span><Clock3 size={15} /> 目標：{project.expectedCompletion}</span>
+            <div className="compact-progress-track">
+              <motion.div
+                className="compact-progress-fill"
+                initial={{ width: 0 }}
+                animate={{ width: `${project.progressPercent}%` }}
+                transition={{ duration: 0.65, ease: 'easeOut' }}
+              />
+            </div>
+          </div>
+        ) : (
+          <CompactPhase project={project} />
         )}
       </div>
 
-      <div className="card-footer">
-        <span className="agency">{project.agency}</span>
-        <a href={project.source.url} target="_blank" rel="noreferrer">
-          官方來源 <ArrowUpRight size={15} />
-        </a>
+      <div className="project-update">
+        <span className="update-text">{project.latestUpdate}</span>
+        <span className="update-date"><CalendarDays size={13} /> {project.lastCheckedAt}</span>
       </div>
+
+      <a
+        className="source-link"
+        href={project.source.url}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={`開啟 ${project.name} 官方來源`}
+        title={project.source.title}
+      >
+        <ArrowUpRight size={17} />
+        <span>來源</span>
+      </a>
     </motion.article>
   )
 }
@@ -205,10 +205,8 @@ function App() {
   const stats = useMemo(() => {
     const active = projects.filter((project) => project.phase !== 'operating').length
     const construction = projects.filter((project) => project.phase === 'construction').length
-    const planning = projects.filter((project) =>
-      ['feasibility', 'comprehensive-planning', 'approved', 'design', 'tender'].includes(project.phase),
-    ).length
-    return { total: projects.length, active, construction, planning }
+    const withProgress = projects.filter((project) => typeof project.progressPercent === 'number').length
+    return { total: projects.length, active, construction, withProgress }
   }, [])
 
   return (
@@ -216,73 +214,54 @@ function App() {
       <section className="hero">
         <div className="hero-glow hero-glow-one" />
         <div className="hero-glow hero-glow-two" />
+
         <nav className="topbar">
           <a className="brand" href="./">
-            <span className="brand-icon"><RailSymbol size={21} /></span>
+            <span className="brand-icon"><RailSymbol size={20} /></span>
             <span>鐵道進行式</span>
           </a>
           <span className="unofficial">非官方整理網站</span>
         </nav>
 
-        <div className="hero-content">
+        <div className="hero-compact">
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            className="hero-copy"
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.4 }}
           >
-            <div className="hero-kicker"><Sparkles size={16} /> Taiwan Rail Projects</div>
-            <h1>看見台灣下一條鐵路，<br /><span>正在走到哪一步。</span></h1>
-            <p>
-              把散落在捷運工程局與交通部鐵道局的官方資訊，
-              整理成一眼就看懂的建設進度。
-            </p>
+            <div className="hero-kicker"><Sparkles size={15} /> Taiwan Rail Projects</div>
+            <h1>台灣鐵道建設，<span>一眼看進度。</span></h1>
+            <p>六都捷運工程機關＋交通部鐵道局官方資料整合。</p>
           </motion.div>
 
-          <motion.div
-            className="mini-map-card"
-            initial={{ opacity: 0, rotate: 2, x: 12 }}
-            animate={{ opacity: 1, rotate: 0, x: 0 }}
-            transition={{ delay: 0.12, duration: 0.55 }}
-          >
-            <MapPinned size={26} />
-            <strong>資料來源</strong>
-            <span>六都捷運工程專責機關</span>
-            <span>＋ 交通部鐵道局</span>
-            <div className="mini-route">
-              <i /><i /><i /><i /><i />
-            </div>
-          </motion.div>
+          <div className="hero-source">
+            <MapPinned size={18} />
+            <span>官方來源優先</span>
+          </div>
         </div>
 
         <div className="stats-grid">
-          <div><strong>{stats.total}</strong><span>目前收錄</span></div>
+          <div><strong>{stats.total}</strong><span>收錄計畫</span></div>
           <div><strong>{stats.active}</strong><span>推動中</span></div>
-          <div><strong>{stats.construction}</strong><span>施工階段</span></div>
-          <div><strong>{stats.planning}</strong><span>規劃／設計</span></div>
+          <div><strong>{stats.construction}</strong><span>施工中</span></div>
+          <div><strong>{stats.withProgress}</strong><span>有官方％</span></div>
         </div>
       </section>
 
       <section className="content">
-        <div className="section-head">
-          <div>
-            <span className="section-kicker">PROJECT BOARD</span>
-            <h2>全台軌道建設進度</h2>
-            <p>有官方百分比就顯示百分比；沒有的計畫只呈現可驗證的行政／工程階段。</p>
-          </div>
-        </div>
-
-        <div className="filter-panel">
+        <div className="toolbar">
           <label className="search-box">
-            <Search size={18} />
+            <Search size={17} />
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="搜尋路線、地區或主管機關"
+              placeholder="搜尋路線、地區、主管機關"
               aria-label="搜尋鐵道建設計畫"
             />
           </label>
 
-          <div className="filter-stack">
+          <div className="filter-groups">
             <div className="filters" role="group" aria-label="依鐵路類型篩選">
               {([
                 ['all', '全部'],
@@ -303,7 +282,7 @@ function App() {
             <div className="filters filters-secondary" role="group" aria-label="依建設階段篩選">
               {([
                 ['all', '所有階段'],
-                ['planning', '規劃／審議'],
+                ['planning', '規劃'],
                 ['design', '設計／招標'],
                 ['construction', '施工／通車'],
               ] as const).map(([value, label]) => (
@@ -319,20 +298,34 @@ function App() {
           </div>
         </div>
 
-        <div className="result-summary">
-          顯示 <strong>{filtered.length}</strong> / {projects.length} 項計畫
-          <span className="sort-hint">依接近完工程度排列 · 施工中有官方％者由高到低</span>
+        <div className="list-heading">
+          <div>
+            <span className="section-kicker">PROJECT BOARD</span>
+            <h2>全台軌道建設進度</h2>
+          </div>
+          <div className="result-summary">
+            <strong>{filtered.length}</strong> / {projects.length}
+            <span>依接近完工程度排列</span>
+          </div>
         </div>
 
-        <div className="project-grid">
+        <div className="project-list-head" aria-hidden="true">
+          <span>計畫</span>
+          <span>階段</span>
+          <span>進度</span>
+          <span>最新資訊</span>
+          <span />
+        </div>
+
+        <div className="project-list">
           {filtered.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 7 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: Math.min(index, 10) * 0.035 }}
+              transition={{ delay: Math.min(index, 8) * 0.025 }}
             >
-              <ProjectCard project={project} />
+              <ProjectRow project={project} />
             </motion.div>
           ))}
         </div>
@@ -346,14 +339,10 @@ function App() {
         )}
 
         <aside className="method-card">
-          <div className="method-icon"><RailSymbol size={24} /></div>
-          <div>
-            <h3>進度怎麼算？</h3>
-            <p>
-              本站不自行估算工程百分比。只有主管機關明確公布數字時才顯示百分比；
-              其他計畫依可行性研究、綜合規劃、核定、設計、招標、施工、測試與通車呈現。
-            </p>
-          </div>
+          <div className="method-icon"><RailSymbol size={21} /></div>
+          <p>
+            只有主管機關明確公布整體百分比時才顯示％；其餘以可研、綜規、核定、設計、招標、施工、測試與通車階段呈現。
+          </p>
         </aside>
       </section>
 
