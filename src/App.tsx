@@ -1,5 +1,13 @@
-import { useMemo, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import {
+  animate,
+  motion,
+  useInView,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from 'framer-motion'
 import {
   ArrowUpRight,
   CalendarDays,
@@ -7,6 +15,7 @@ import {
   RailSymbol,
   Search,
   Sparkles,
+  TrainFront,
 } from 'lucide-react'
 import { projects } from './data/projects'
 import type { ProjectPhase, ProjectType, RailwayProject } from './types'
@@ -91,6 +100,73 @@ function compareByCompletion(a: RailwayProject, b: RailwayProject) {
   return a.name.localeCompare(b.name, 'zh-Hant')
 }
 
+function CountUp({ value }: { value: number }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-10%' })
+  const reduceMotion = useReducedMotion()
+  const [display, setDisplay] = useState(reduceMotion ? value : 0)
+
+  useEffect(() => {
+    if (!isInView || reduceMotion) {
+      if (reduceMotion) setDisplay(value)
+      return
+    }
+
+    const controls = animate(0, value, {
+      duration: 0.8,
+      ease: 'easeOut',
+      onUpdate: (latest) => setDisplay(latest),
+    })
+
+    return () => controls.stop()
+  }, [isInView, reduceMotion, value])
+
+  return <span ref={ref}>{display.toFixed(2)}%</span>
+}
+
+function ScrollRail() {
+  const reduceMotion = useReducedMotion()
+  const { scrollYProgress } = useScroll()
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 110,
+    damping: 26,
+    mass: 0.4,
+  })
+  const trainY = useTransform(smoothProgress, [0, 1], ['0%', 'calc(100% - 28px)'])
+  const trainX = useTransform(smoothProgress, [0, 1], ['0%', 'calc(100% - 28px)'])
+
+  if (reduceMotion) return null
+
+  return (
+    <>
+      <div className="scroll-rail scroll-rail-desktop" aria-hidden="true">
+        <div className="rail-line rail-line-vertical" />
+        <motion.div
+          className="rail-progress rail-progress-vertical"
+          style={{ scaleY: smoothProgress }}
+        />
+        <motion.div className="scroll-train scroll-train-vertical" style={{ y: trainY }}>
+          <TrainFront size={15} />
+        </motion.div>
+        <span className="rail-station rail-station-a" />
+        <span className="rail-station rail-station-b" />
+        <span className="rail-station rail-station-c" />
+      </div>
+
+      <div className="scroll-rail scroll-rail-mobile" aria-hidden="true">
+        <div className="rail-line rail-line-horizontal" />
+        <motion.div
+          className="rail-progress rail-progress-horizontal"
+          style={{ scaleX: smoothProgress }}
+        />
+        <motion.div className="scroll-train scroll-train-horizontal" style={{ x: trainX }}>
+          <TrainFront size={13} />
+        </motion.div>
+      </div>
+    </>
+  )
+}
+
 function CompactPhase({ project }: { project: RailwayProject }) {
   const currentIndex = phaseOrder.indexOf(project.phase)
 
@@ -98,13 +174,17 @@ function CompactPhase({ project }: { project: RailwayProject }) {
     <div className="compact-phase" aria-label={`目前階段：${project.phaseLabel}`}>
       <div className="stage-segments">
         {phaseOrder.map((phase, index) => (
-          <span
+          <motion.span
             key={phase}
             className={[
               index < currentIndex ? 'done' : '',
               index === currentIndex ? 'current' : '',
             ].join(' ')}
             title={phaseShort[phase]}
+            initial={{ scaleX: 0.25, opacity: 0.45 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            viewport={{ once: true, amount: 0.8 }}
+            transition={{ delay: index * 0.035, duration: 0.25 }}
           />
         ))}
       </div>
@@ -113,15 +193,33 @@ function CompactPhase({ project }: { project: RailwayProject }) {
   )
 }
 
-function ProjectRow({ project }: { project: RailwayProject }) {
+function ProjectRow({ project, index }: { project: RailwayProject; index: number }) {
+  const reduceMotion = useReducedMotion()
+  const entryX = reduceMotion ? 0 : index % 2 === 0 ? -18 : 18
+
   return (
     <motion.article
+      layout
       className="project-row"
-      whileHover={{ x: 3 }}
-      transition={{ type: 'spring', stiffness: 340, damping: 26 }}
+      initial={reduceMotion ? false : { opacity: 0, x: entryX, scale: 0.992 }}
+      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.35, margin: '0px 0px -6% 0px' }}
+      whileHover={reduceMotion ? undefined : { x: 3 }}
+      transition={{
+        layout: { type: 'spring', stiffness: 320, damping: 30 },
+        opacity: { duration: 0.28 },
+        x: { type: 'spring', stiffness: 300, damping: 26 },
+        scale: { duration: 0.28 },
+      }}
       style={{ '--route-color': project.color } as React.CSSProperties}
     >
-      <div className="route-stripe" />
+      <motion.div
+        className="route-stripe"
+        initial={reduceMotion ? false : { scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.42, ease: 'easeOut' }}
+      />
 
       <div className="project-main">
         <div className="project-title-line">
@@ -143,16 +241,26 @@ function ProjectRow({ project }: { project: RailwayProject }) {
         {typeof project.progressPercent === 'number' ? (
           <div className="compact-progress" aria-label={`官方進度 ${project.progressPercent}%`}>
             <div className="compact-progress-top">
-              <span className="progress-value">{project.progressPercent.toFixed(2)}%</span>
+              <span className="progress-value"><CountUp value={project.progressPercent} /></span>
               <span className="progress-source">官方進度</span>
             </div>
             <div className="compact-progress-track">
               <motion.div
                 className="compact-progress-fill"
-                initial={{ width: 0 }}
-                animate={{ width: `${project.progressPercent}%` }}
-                transition={{ duration: 0.65, ease: 'easeOut' }}
+                initial={reduceMotion ? false : { width: 0 }}
+                whileInView={{ width: `${project.progressPercent}%` }}
+                viewport={{ once: true, amount: 0.8 }}
+                transition={{ duration: 0.78, ease: 'easeOut' }}
               />
+              {project.progressPercent >= 85 && (
+                <motion.span
+                  className="near-finish-glow"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: [0, 0.9, 0.35] }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.4, delay: 0.45 }}
+                />
+              )}
             </div>
           </div>
         ) : (
@@ -211,9 +319,13 @@ function App() {
 
   return (
     <main>
+      <ScrollRail />
+
       <section className="hero">
         <div className="hero-glow hero-glow-one" />
         <div className="hero-glow hero-glow-two" />
+        <div className="hero-route hero-route-one" aria-hidden="true" />
+        <div className="hero-route hero-route-two" aria-hidden="true" />
 
         <nav className="topbar">
           <a className="brand" href="./">
@@ -235,17 +347,33 @@ function App() {
             <p>六都捷運工程機關＋交通部鐵道局官方資料整合。</p>
           </motion.div>
 
-          <div className="hero-source">
+          <motion.div
+            className="hero-source"
+            initial={{ opacity: 0, x: 8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.15, duration: 0.4 }}
+          >
             <MapPinned size={18} />
             <span>官方來源優先</span>
-          </div>
+          </motion.div>
         </div>
 
         <div className="stats-grid">
-          <div><strong>{stats.total}</strong><span>收錄計畫</span></div>
-          <div><strong>{stats.active}</strong><span>推動中</span></div>
-          <div><strong>{stats.construction}</strong><span>施工中</span></div>
-          <div><strong>{stats.withProgress}</strong><span>有官方％</span></div>
+          {[
+            [stats.total, '收錄計畫'],
+            [stats.active, '推動中'],
+            [stats.construction, '施工中'],
+            [stats.withProgress, '有官方％'],
+          ].map(([value, label], index) => (
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.08 + index * 0.055 }}
+            >
+              <strong>{value}</strong><span>{label}</span>
+            </motion.div>
+          ))}
         </div>
       </section>
 
@@ -317,18 +445,11 @@ function App() {
           <span />
         </div>
 
-        <div className="project-list">
+        <motion.div className="project-list" layout>
           {filtered.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 7 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: Math.min(index, 8) * 0.025 }}
-            >
-              <ProjectRow project={project} />
-            </motion.div>
+            <ProjectRow key={project.id} project={project} index={index} />
           ))}
-        </div>
+        </motion.div>
 
         {filtered.length === 0 && (
           <div className="empty-state">
