@@ -199,6 +199,25 @@ function ScrollRail() {
   )
 }
 
+function DeckNavigation() {
+  return (
+    <nav className="deck-nav" aria-label="簡報章節導覽">
+      {[
+        ['overview', '01', '總覽'],
+        ['vision', '02', '建設願景'],
+        ['focus', '03', '重點工程'],
+        ['projects', '04', '進度監測'],
+      ].map(([id, number, label]) => (
+        <a key={id} href={`#${id}`} title={label}>
+          <span>{number}</span>
+          <i />
+          <strong>{label}</strong>
+        </a>
+      ))}
+    </nav>
+  )
+}
+
 function CompactPhase({ project }: { project: RailwayProject }) {
   const currentIndex = phaseOrder.indexOf(project.phase)
 
@@ -440,8 +459,9 @@ function App() {
   return (
     <main>
       <ScrollRail />
+      <DeckNavigation />
 
-      <section className="hero">
+      <section className="hero deck-slide" id="overview">
         <div className="hero-grid" aria-hidden="true" />
         <div className="hero-glow hero-glow-one" />
         <div className="hero-glow hero-glow-two" />
@@ -459,6 +479,8 @@ function App() {
           </div>
           <span className="unofficial">非官方整理網站</span>
         </nav>
+
+        <div className="slide-index" aria-hidden="true"><span>01</span><i /> OVERVIEW</div>
 
         <div className="hero-policy">
           <motion.div
@@ -534,7 +556,8 @@ function App() {
         </div>
       </section>
 
-      <section className="policy-section">
+      <section className="policy-section deck-slide" id="vision">
+        <div className="slide-index slide-index-dark" aria-hidden="true"><span>02</span><i /> VISION</div>
         <div className="policy-intro">
           <span className="section-kicker">WHY RAIL MATTERS</span>
           <h2>建設的不只是路線，<br />而是下一階段的城市連結。</h2>
@@ -563,7 +586,8 @@ function App() {
         </div>
       </section>
 
-      <section className="featured-section">
+      <section className="featured-section deck-slide" id="focus">
+        <div className="slide-index slide-index-dark" aria-hidden="true"><span>03</span><i /> PROJECTS IN FOCUS</div>
         <div className="featured-heading">
           <div>
             <span className="section-kicker">PROJECTS IN FOCUS</span>
@@ -578,7 +602,8 @@ function App() {
         </div>
       </section>
 
-      <section className="content" id="projects">
+      <section className="content deck-slide deck-slide-projects" id="projects">
+        <div className="slide-index slide-index-dark" aria-hidden="true"><span>04</span><i /> PROJECT MONITOR</div>
         <div className="board-intro">
           <div>
             <span className="section-kicker">PROJECT MONITOR</span>
