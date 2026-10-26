@@ -672,3 +672,16 @@ footer strong { color: #324956; }
   }
 }
 
+.sort-hint {
+  margin-left: 12px;
+  color: #9aa2a8;
+  font-size: 11px;
+}
+
+@media (max-width: 560px) {
+  .sort-hint {
+    display: block;
+    margin: 5px 0 0;
+  }
+}
+
