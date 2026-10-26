@@ -1,0 +1,1023 @@
+[
+  {
+    "id": "taipei-wanda-1",
+    "name": "萬大－中和－樹林線第一期",
+    "type": "metro",
+    "region": "臺北／新北",
+    "agency": "臺北市政府捷運工程局",
+    "color": "#9ACD32",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressNote": "第一期工程持續施工，官方最新期程以完成工程及初履勘後通車為目標。",
+    "expectedCompletion": "2027（工程目標）",
+    "latestUpdate": "萬大線第一期各區段工程持續施工。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "由中正紀念堂往中和、土城方向延伸的中運量捷運第一期工程。",
+    "source": {
+      "agency": "臺北市政府捷運工程局",
+      "title": "萬大中和樹林一期－路線說明",
+      "url": "https://www.dorts.gov.taipei/cp.aspx?n=E564EC7795D2B5BC"
+    }
+  },
+  {
+    "id": "taipei-wanda-2",
+    "name": "萬大－中和－樹林線第二期",
+    "type": "metro",
+    "region": "新北",
+    "agency": "臺北市政府捷運工程局",
+    "color": "#9ACD32",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressNote": "第二期（土城樹林線）已列入興建中路網。",
+    "expectedCompletion": "2031（工程目標）",
+    "latestUpdate": "第二期工程持續推進。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "自第一期尾端續往樹林、迴龍延伸。",
+    "source": {
+      "agency": "臺北市政府捷運工程局",
+      "title": "萬大線工程資訊",
+      "url": "https://www.dorts.gov.taipei/"
+    }
+  },
+  {
+    "id": "taipei-circle-north-south",
+    "name": "環狀線南環段、北環段",
+    "type": "metro",
+    "region": "臺北／新北",
+    "agency": "臺北市政府捷運工程局",
+    "color": "#FFCC33",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressNote": "北環與南環各區段標持續施工。",
+    "latestUpdate": "北環段多站持續進行連續壁、開挖、支撐與潛盾前置作業。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "補齊臺北捷運環狀線北側與南側缺口。",
+    "source": {
+      "agency": "臺北市政府捷運工程局",
+      "title": "環狀線北環及南環－工程資訊",
+      "url": "https://www.dorts.gov.taipei/cp.aspx?Create=1&n=7CEEE7ECF48CE83F&s=D72A46A770D73BF7"
+    }
+  },
+  {
+    "id": "taipei-circle-east",
+    "name": "環狀線東環段",
+    "type": "metro",
+    "region": "臺北",
+    "agency": "臺北市政府捷運工程局",
+    "color": "#FFCC33",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressNote": "優先標已開工，其他區段依計畫推進。",
+    "latestUpdate": "優先標已進入施工，辦理潛盾隧道發進井等作業。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "連接北環與南環、形成完整環狀線的重要路段。",
+    "source": {
+      "agency": "臺北市政府捷運工程局",
+      "title": "環狀線東環段－路線說明",
+      "url": "https://www.dorts.gov.taipei/cp.aspx?n=F47E41B6C8884DC6"
+    }
+  },
+  {
+    "id": "taipei-minsheng-xizhi",
+    "name": "民生汐止線臺北市段",
+    "type": "metro",
+    "region": "臺北",
+    "agency": "臺北市政府捷運工程局",
+    "color": "#7FA9C9",
+    "phase": "comprehensive-planning",
+    "phaseLabel": "綜合規劃審議中",
+    "progressNote": "臺北市段綜合規劃持續提報中央審議。",
+    "latestUpdate": "2026年7月第4次提報綜合規劃續審。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "自大稻埕、民生社區往東銜接汐東捷運。",
+    "source": {
+      "agency": "臺北市政府捷運工程局",
+      "title": "民生汐止線說明",
+      "url": "https://www.dorts.gov.taipei/cp.aspx?n=640dfddfa9b8fea8&s=4BCD1EA120129952"
+    }
+  },
+  {
+    "id": "ntpc-xidong",
+    "name": "汐止東湖線",
+    "type": "metro",
+    "region": "新北／臺北",
+    "agency": "新北市政府捷運工程局",
+    "color": "#79A7D3",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressPercent": 31.23,
+    "progressNote": "2026-08-20官方新聞稿公布之整體計畫進度。",
+    "expectedCompletion": "2032",
+    "latestUpdate": "主體工程持續推進。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "串聯汐止與東湖並銜接基隆捷運。",
+    "source": {
+      "agency": "新北市政府捷運工程局",
+      "title": "汐東線主體工程進度穩步向前",
+      "url": "https://www.dorts.ntpc.gov.tw/news/indexInfo/bxkZDp9KZJEw",
+      "officialUpdatedAt": "2026-08-20"
+    }
+  },
+  {
+    "id": "ntpc-keelung",
+    "name": "基隆捷運",
+    "type": "metro",
+    "region": "基隆／新北／臺北",
+    "agency": "新北市政府捷運工程局",
+    "color": "#5B8DEF",
+    "phase": "design",
+    "phaseLabel": "設計／招標推進",
+    "progressNote": "新北市最新工程表列為設計中；機電統包已決標，部分工程持續招標。",
+    "expectedCompletion": "2033",
+    "latestUpdate": "機電系統及軌道統包工程已決標。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "由新北捷運局主政興建，串聯基隆與汐止、東湖。",
+    "source": {
+      "agency": "新北市政府捷運工程局",
+      "title": "基隆捷運工程推動",
+      "url": "https://www.dorts.ntpc.gov.tw/news/indexInfo/P9z2z3NNdrDp?page=1",
+      "officialUpdatedAt": "2026-10-13"
+    }
+  },
+  {
+    "id": "ntpc-danhai-2",
+    "name": "淡海輕軌第二期藍海線",
+    "type": "metro",
+    "region": "新北",
+    "agency": "新北市政府捷運工程局",
+    "color": "#5B9BD5",
+    "phase": "design",
+    "phaseLabel": "設計中",
+    "progressNote": "新北市境內捷運路線工程計畫列為設計中。",
+    "latestUpdate": "修正計畫持續中央審議。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "淡海輕軌藍海線第二期建設。",
+    "source": {
+      "agency": "新北市政府捷運工程局",
+      "title": "新北市境內捷運路線工程計畫",
+      "url": "https://www.dorts.ntpc.gov.tw/"
+    }
+  },
+  {
+    "id": "ntpc-shenkeng",
+    "name": "深坑輕軌",
+    "type": "metro",
+    "region": "新北",
+    "agency": "新北市政府捷運工程局",
+    "color": "#6B7280",
+    "phase": "feasibility",
+    "phaseLabel": "規劃中",
+    "progressNote": "新北市境內捷運路線工程計畫列為規劃中。",
+    "latestUpdate": "持續辦理規劃。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "新北深坑地區輕軌規劃。",
+    "source": {
+      "agency": "新北市政府捷運工程局",
+      "title": "新北市境內捷運路線工程計畫",
+      "url": "https://www.dorts.ntpc.gov.tw/"
+    }
+  },
+  {
+    "id": "ntpc-wugu-taishan",
+    "name": "五股泰山輕軌",
+    "type": "metro",
+    "region": "新北",
+    "agency": "新北市政府捷運工程局",
+    "color": "#6B7280",
+    "phase": "comprehensive-planning",
+    "phaseLabel": "綜合規劃審議中",
+    "progressNote": "2026年9月綜合規劃報告再次提報交通部審查。",
+    "latestUpdate": "綜合規劃持續中央審查。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "服務五股、泰山地區之輕軌計畫。",
+    "source": {
+      "agency": "新北市政府捷運工程局",
+      "title": "捷運局大事紀",
+      "url": "https://www.dorts.ntpc.gov.tw/agency/memorabilia"
+    }
+  },
+  {
+    "id": "ntpc-bali",
+    "name": "八里輕軌",
+    "type": "metro",
+    "region": "新北",
+    "agency": "新北市政府捷運工程局",
+    "color": "#6B7280",
+    "phase": "feasibility",
+    "phaseLabel": "可行性研究審議中",
+    "progressNote": "交通部鐵道局已函復可行性研究審查意見。",
+    "latestUpdate": "可行性研究持續修正與審議。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "八里地區輕軌規劃。",
+    "source": {
+      "agency": "新北市政府捷運工程局",
+      "title": "捷運局大事紀",
+      "url": "https://www.dorts.ntpc.gov.tw/agency/memorabilia"
+    }
+  },
+  {
+    "id": "ntpc-taishan-banqiao",
+    "name": "泰山板橋輕軌",
+    "type": "metro",
+    "region": "新北",
+    "agency": "新北市政府捷運工程局",
+    "color": "#6B7280",
+    "phase": "feasibility",
+    "phaseLabel": "可行性研究審議中",
+    "progressNote": "2026年7月可行性研究報告再次提報交通部審議。",
+    "latestUpdate": "可行性研究持續中央審議。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "串聯泰山、板橋之輕軌規劃。",
+    "source": {
+      "agency": "新北市政府捷運工程局",
+      "title": "捷運局大事紀",
+      "url": "https://www.dorts.ntpc.gov.tw/agency/memorabilia"
+    }
+  },
+  {
+    "id": "ntpc-zhonghe-guangfu",
+    "name": "中和光復線（新北市段）",
+    "type": "metro",
+    "region": "新北",
+    "agency": "新北市政府捷運工程局",
+    "color": "#6B7280",
+    "phase": "feasibility",
+    "phaseLabel": "可行性研究審議中",
+    "progressNote": "2026年9月可行性研究提報交通部審查。",
+    "latestUpdate": "已提報中央審查。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "中和光復線新北市段規劃。",
+    "source": {
+      "agency": "新北市政府捷運工程局",
+      "title": "捷運局大事紀",
+      "url": "https://www.dorts.ntpc.gov.tw/agency/memorabilia"
+    }
+  },
+  {
+    "id": "ntpc-linkou",
+    "name": "林口輕軌",
+    "type": "metro",
+    "region": "新北",
+    "agency": "新北市政府捷運工程局",
+    "color": "#6B7280",
+    "phase": "feasibility",
+    "phaseLabel": "規劃中",
+    "progressNote": "新北市境內捷運路線工程計畫列為規劃中。",
+    "latestUpdate": "持續辦理整體路網與路線規劃。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "林口地區輕軌規劃。",
+    "source": {
+      "agency": "新北市政府捷運工程局",
+      "title": "新北市境內捷運路線工程計畫",
+      "url": "https://www.dorts.ntpc.gov.tw/"
+    }
+  },
+  {
+    "id": "taoyuan-green",
+    "name": "桃園捷運綠線",
+    "type": "metro",
+    "region": "桃園",
+    "agency": "桃園市政府捷運工程局",
+    "color": "#168447",
+    "phase": "construction",
+    "phaseLabel": "施工階段",
+    "progressPercent": 72.67,
+    "progressNote": "官方軌道建設進度總覽之計畫總進度。",
+    "latestUpdate": "計畫總進度72.67%。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "桃園都會區捷運綠線建設計畫。",
+    "source": {
+      "agency": "桃園市政府捷運工程局",
+      "title": "軌道建設進度總覽",
+      "url": "https://dorts.tycg.gov.tw/cp.aspx?n=23173"
+    }
+  },
+  {
+    "id": "taoyuan-brown",
+    "name": "桃園捷運棕線",
+    "type": "metro",
+    "region": "桃園",
+    "agency": "桃園市政府捷運工程局",
+    "color": "#8B5A2B",
+    "phase": "tender",
+    "phaseLabel": "工程招標／決標",
+    "progressNote": "機電系統統包工程已決標。",
+    "latestUpdate": "BRM01標機電系統統包工程於2026年7月決標。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "桃園棕線捷運建設計畫。",
+    "source": {
+      "agency": "桃園市政府捷運工程局",
+      "title": "軌道建設進度總覽",
+      "url": "https://dorts.tycg.gov.tw/cp.aspx?n=23173"
+    }
+  },
+  {
+    "id": "taoyuan-sanying-bade",
+    "name": "三鶯線延伸桃園八德",
+    "type": "metro",
+    "region": "桃園／新北",
+    "agency": "桃園市政府捷運工程局",
+    "color": "#7C5AA6",
+    "phase": "tender",
+    "phaseLabel": "工程招標／設計",
+    "progressNote": "細部設計技術服務標已決標。",
+    "latestUpdate": "持續辦理細部設計與後續工程採購。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "三鶯線自新北延伸至桃園八德。",
+    "source": {
+      "agency": "桃園市政府捷運工程局",
+      "title": "軌道建設進度總覽",
+      "url": "https://dorts.tycg.gov.tw/cp.aspx?n=23173"
+    }
+  },
+  {
+    "id": "taoyuan-green-zhongli",
+    "name": "桃園捷運綠線延伸中壢",
+    "type": "metro",
+    "region": "桃園",
+    "agency": "桃園市政府捷運工程局",
+    "color": "#168447",
+    "phase": "construction",
+    "phaseLabel": "招標／施工階段",
+    "progressNote": "GEC04標土建統包工程已於2026年8月開工。",
+    "latestUpdate": "部分標案已進入施工。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "桃園捷運綠線向中壢延伸計畫。",
+    "source": {
+      "agency": "桃園市政府捷運工程局",
+      "title": "軌道建設進度總覽",
+      "url": "https://dorts.tycg.gov.tw/cp.aspx?n=23173"
+    }
+  },
+  {
+    "id": "taichung-blue",
+    "name": "臺中捷運藍線",
+    "type": "metro",
+    "region": "臺中",
+    "agency": "臺中市政府捷運工程局",
+    "color": "#1874C8",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressNote": "主線已開工，機電與機廠工程持續推進。",
+    "latestUpdate": "藍線已進入實質興建階段。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "臺中捷運第二條骨幹路線。",
+    "source": {
+      "agency": "臺中市政府捷運工程局",
+      "title": "整體軌道路網",
+      "url": "https://tcrt.taichung.gov.tw/content/index?Parser=1%2C6%2C44"
+    }
+  },
+  {
+    "id": "taichung-green-extension",
+    "name": "臺中捷運綠線延伸大坑、彰化",
+    "type": "metro",
+    "region": "臺中／彰化",
+    "agency": "臺中市政府捷運工程局",
+    "color": "#62A744",
+    "phase": "comprehensive-planning",
+    "phaseLabel": "綜合規劃審議中",
+    "progressNote": "綜合規劃已提交通部審議，並同步辦理環評與都市計畫變更。",
+    "latestUpdate": "2026年9月收到交通部綜規審查意見，刻正修正。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "綠線向大坑及彰化兩端延伸。",
+    "source": {
+      "agency": "臺中市政府捷運工程局",
+      "title": "捷運綠線延伸大坑、彰化",
+      "url": "https://tcrt.taichung.gov.tw//content/index?Parser=1%2C6%2C100"
+    }
+  },
+  {
+    "id": "taichung-orange",
+    "name": "臺中機場捷運（橘線）",
+    "type": "metro",
+    "region": "臺中",
+    "agency": "臺中市政府捷運工程局",
+    "color": "#F28C28",
+    "phase": "comprehensive-planning",
+    "phaseLabel": "綜合規劃／基本設計",
+    "progressNote": "可行性研究已獲行政院核定，2026年9月啟動綜合規劃及基本設計。",
+    "latestUpdate": "綜合規劃、環評及基本設計技術服務已決標啟動。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "串聯臺中國際機場、市區與大里霧峰。",
+    "source": {
+      "agency": "臺中市政府捷運工程局",
+      "title": "機場捷運（橘線）",
+      "url": "https://tcrt.taichung.gov.tw/content/index?Parser=1%2C6%2C99"
+    }
+  },
+  {
+    "id": "taichung-blue-taiping",
+    "name": "臺中捷運藍線延伸太平",
+    "type": "metro",
+    "region": "臺中",
+    "agency": "臺中市政府捷運工程局",
+    "color": "#1874C8",
+    "phase": "feasibility",
+    "phaseLabel": "可行性研究審議中",
+    "progressNote": "修正報告持續提送交通部審查。",
+    "latestUpdate": "2026年10月修正報告再次提報交通部。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "藍線向太平延伸。",
+    "source": {
+      "agency": "臺中市政府捷運工程局",
+      "title": "捷運藍線延伸太平",
+      "url": "https://tcrt.taichung.gov.tw/content/index?Parser=1%2C6%2C141"
+    }
+  },
+  {
+    "id": "taichung-purple",
+    "name": "臺中屯區捷運環狀線（紫線）",
+    "type": "metro",
+    "region": "臺中",
+    "agency": "臺中市政府捷運工程局",
+    "color": "#7E57C2",
+    "phase": "feasibility",
+    "phaseLabel": "可行性研究審議中",
+    "progressNote": "可行性研究持續依中央意見修正。",
+    "latestUpdate": "交通部2026年7月再次函復審查意見。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "串聯北屯、太平、大里與大慶的環狀路線。",
+    "source": {
+      "agency": "臺中市政府捷運工程局",
+      "title": "屯區捷運環狀線（紫線）",
+      "url": "https://tcrt.taichung.gov.tw/content/index?Parser=1%2C6%2C142"
+    }
+  },
+  {
+    "id": "taichung-red",
+    "name": "臺中崇德豐原線（紅線）",
+    "type": "metro",
+    "region": "臺中",
+    "agency": "臺中市政府捷運工程局",
+    "color": "#C74646",
+    "phase": "feasibility",
+    "phaseLabel": "可行性研究",
+    "progressNote": "已完成可行性研究期中報告，持續辦理期末報告。",
+    "latestUpdate": "可行性研究持續進行。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "臺中崇德路廊往豐原方向之捷運規劃。",
+    "source": {
+      "agency": "臺中市政府捷運工程局",
+      "title": "整體軌道路網",
+      "url": "https://tcrt.taichung.gov.tw/content/index?Parser=1%2C6%2C44"
+    }
+  },
+  {
+    "id": "taichung-orange-coast",
+    "name": "臺中機場捷運橘線延伸海線",
+    "type": "metro",
+    "region": "臺中",
+    "agency": "臺中市政府捷運工程局",
+    "color": "#F28C28",
+    "phase": "feasibility",
+    "phaseLabel": "可行性研究",
+    "progressNote": "可行性研究期中修正報告審查中。",
+    "latestUpdate": "持續辦理可行性研究。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "橘線往海線地區延伸規劃。",
+    "source": {
+      "agency": "臺中市政府捷運工程局",
+      "title": "整體軌道路網",
+      "url": "https://tcrt.taichung.gov.tw/content/index?Parser=1%2C6%2C44"
+    }
+  },
+  {
+    "id": "tainan-blue-1",
+    "name": "臺南捷運第一期藍線",
+    "type": "metro",
+    "region": "臺南",
+    "agency": "臺南市捷運工程處",
+    "color": "#1479C9",
+    "phase": "tender",
+    "phaseLabel": "設計／統包招標",
+    "progressNote": "綜合規劃已核定，統包工程於2026年8月公告招標。",
+    "latestUpdate": "第一期藍線統包工程正式公告招標。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "臺南第一條優先推動捷運路線。",
+    "source": {
+      "agency": "臺南市捷運工程處",
+      "title": "臺南捷運進度公開",
+      "url": "https://traffic.tainan.gov.tw/RTO/StaticPage/ScheduleLine"
+    }
+  },
+  {
+    "id": "tainan-blue-extension",
+    "name": "臺南捷運第一期藍線延伸線",
+    "type": "metro",
+    "region": "臺南",
+    "agency": "臺南市捷運工程處",
+    "color": "#1479C9",
+    "phase": "comprehensive-planning",
+    "phaseLabel": "可研／綜規中央審議",
+    "progressNote": "可行性研究、綜合規劃及環評報告均配合中央審議。",
+    "latestUpdate": "綜合規劃與環評持續中央審議。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "第一期藍線延伸路線。",
+    "source": {
+      "agency": "臺南市捷運工程處",
+      "title": "臺南捷運進度公開",
+      "url": "https://traffic.tainan.gov.tw/RTO/StaticPage/ScheduleLine"
+    }
+  },
+  {
+    "id": "tainan-green",
+    "name": "臺南捷運綠線",
+    "type": "metro",
+    "region": "臺南",
+    "agency": "臺南市捷運工程處",
+    "color": "#2E8B57",
+    "phase": "feasibility",
+    "phaseLabel": "可行性研究",
+    "progressNote": "可行性研究持續推進並已進入中央程序。",
+    "latestUpdate": "持續辦理可行性研究。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "臺南優先路網綠線。",
+    "source": {
+      "agency": "臺南市捷運工程處",
+      "title": "臺南捷運進度公開",
+      "url": "https://traffic.tainan.gov.tw/RTO/StaticPage/ScheduleLine"
+    }
+  },
+  {
+    "id": "tainan-red",
+    "name": "臺南捷運紅線",
+    "type": "metro",
+    "region": "臺南",
+    "agency": "臺南市捷運工程處",
+    "color": "#D44848",
+    "phase": "feasibility",
+    "phaseLabel": "可行性研究",
+    "progressNote": "可行性研究已送中央審議。",
+    "latestUpdate": "持續辦理可行性研究中央審查。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "臺南優先路網紅線。",
+    "source": {
+      "agency": "臺南市捷運工程處",
+      "title": "臺南捷運進度公開",
+      "url": "https://traffic.tainan.gov.tw/RTO/StaticPage/ScheduleLine"
+    }
+  },
+  {
+    "id": "tainan-dark-green",
+    "name": "臺南捷運深綠線",
+    "type": "metro",
+    "region": "臺南",
+    "agency": "臺南市捷運工程處",
+    "color": "#1F6F50",
+    "phase": "feasibility",
+    "phaseLabel": "可行性研究中央審議",
+    "progressNote": "2026年8月交通部鐵道局辦理現勘。",
+    "latestUpdate": "可行性研究已進入中央審查。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "串聯藍延、南科、新市與善化的科技運輸廊帶。",
+    "source": {
+      "agency": "臺南市捷運工程處",
+      "title": "深綠線可行性研究現勘",
+      "url": "https://traffic.tainan.gov.tw/RTO/Announcement/bulletin?PageType=1&id=bb3bf5f3-f398-48cd-8f43-5b439ceda90a",
+      "officialUpdatedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "tainan-yellow",
+    "name": "臺南捷運黃線",
+    "type": "metro",
+    "region": "臺南",
+    "agency": "臺南市捷運工程處",
+    "color": "#D9B300",
+    "phase": "feasibility",
+    "phaseLabel": "可行性研究",
+    "progressNote": "可行性研究辦理至期中階段。",
+    "latestUpdate": "持續辦理可行性研究。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "臺南優先路網黃線。",
+    "source": {
+      "agency": "臺南市捷運工程處",
+      "title": "臺南捷運進度公開",
+      "url": "https://traffic.tainan.gov.tw/RTO/StaticPage/ScheduleLine"
+    }
+  },
+  {
+    "id": "kaohsiung-purple",
+    "name": "高雄捷運紫線",
+    "type": "metro",
+    "region": "高雄",
+    "agency": "高雄市政府捷運工程局",
+    "color": "#7C4DFF",
+    "phase": "feasibility",
+    "phaseLabel": "可行性研究",
+    "progressNote": "官方路線進度圖顯示交通部審議中。",
+    "latestUpdate": "可行性研究持續交通部審議。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "高雄捷運紫線規劃。",
+    "source": {
+      "agency": "高雄市政府捷運工程局",
+      "title": "捷運路線進度圖",
+      "url": "https://mtbu.kcg.gov.tw/KaohsiungMetro/Roadmapschedule.html"
+    }
+  },
+  {
+    "id": "kaohsiung-gangshan-luzhu-2a",
+    "name": "岡山路竹延伸線第二A階段",
+    "type": "metro",
+    "region": "高雄",
+    "agency": "高雄市政府捷運工程局",
+    "color": "#E53935",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressPercent": 42.13,
+    "progressNote": "官方各線計畫進度累計百分比。",
+    "latestUpdate": "工程持續興建中。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "高雄捷運紅線岡山路竹延伸第二A階段。",
+    "source": {
+      "agency": "高雄市政府捷運工程局",
+      "title": "各線計畫進度",
+      "url": "https://mtbu.kcg.gov.tw/KaohsiungMetro/ApprovedRoutes/ProjectProgress.html"
+    }
+  },
+  {
+    "id": "kaohsiung-gangshan-luzhu-2b",
+    "name": "岡山路竹延伸線第二B階段",
+    "type": "metro",
+    "region": "高雄",
+    "agency": "高雄市政府捷運工程局",
+    "color": "#E53935",
+    "phase": "design",
+    "phaseLabel": "細部設計",
+    "progressNote": "土建（含軌道）及設施機電細部設計已決標。",
+    "latestUpdate": "進入細部設計階段。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "高雄捷運紅線岡山路竹延伸第二B階段。",
+    "source": {
+      "agency": "高雄市政府捷運工程局",
+      "title": "捷運路線進度圖",
+      "url": "https://mtbu.kcg.gov.tw/KaohsiungMetro/Roadmapschedule.html"
+    }
+  },
+  {
+    "id": "kaohsiung-yellow",
+    "name": "高雄捷運黃線",
+    "type": "metro",
+    "region": "高雄",
+    "agency": "高雄市政府捷運工程局",
+    "color": "#F3C51D",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressPercent": 15.12,
+    "progressNote": "官方各線計畫進度累計百分比。",
+    "latestUpdate": "工程持續興建中。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "串聯高雄市區重要生活與就業節點。",
+    "source": {
+      "agency": "高雄市政府捷運工程局",
+      "title": "各線計畫進度",
+      "url": "https://mtbu.kcg.gov.tw/KaohsiungMetro/ApprovedRoutes/ProjectProgress.html"
+    }
+  },
+  {
+    "id": "kaohsiung-linyuan",
+    "name": "高雄捷運小港林園線",
+    "type": "metro",
+    "region": "高雄",
+    "agency": "高雄市政府捷運工程局",
+    "color": "#D32F2F",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressPercent": 16.2,
+    "progressNote": "官方各線計畫進度累計百分比。",
+    "latestUpdate": "工程持續興建中。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "紅線由小港往林園延伸。",
+    "source": {
+      "agency": "高雄市政府捷運工程局",
+      "title": "各線計畫進度",
+      "url": "https://mtbu.kcg.gov.tw/KaohsiungMetro/ApprovedRoutes/ProjectProgress.html"
+    }
+  },
+  {
+    "id": "rb-airport-zhongli",
+    "name": "機場捷運延伸中壢火車站",
+    "type": "metro",
+    "region": "桃園",
+    "agency": "交通部鐵道局",
+    "color": "#8E44AD",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressNote": "交通部鐵道局列為施工中路網建設。",
+    "latestUpdate": "持續施工。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "機場捷運由A22向中壢車站延伸。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路路網建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "rb-airport-a14",
+    "name": "機場捷運增設A14站",
+    "type": "metro",
+    "region": "桃園",
+    "agency": "交通部鐵道局",
+    "color": "#8E44AD",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressNote": "交通部鐵道局列為施工中路網建設。",
+    "latestUpdate": "持續施工。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "機場捷運增設A14站計畫。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路路網建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "tra-huadong-double",
+    "name": "花東地區鐵路雙軌電氣化",
+    "type": "tra",
+    "region": "花蓮／臺東",
+    "agency": "交通部鐵道局",
+    "color": "#2C68B1",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressNote": "交通部鐵道局列為施工中路網建設。",
+    "latestUpdate": "工程持續推進。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "提升花東鐵路容量與營運韌性的雙軌電氣化建設。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路路網建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "tra-sea-double",
+    "name": "海線雙軌化（談文至追分）",
+    "type": "tra",
+    "region": "苗栗／臺中",
+    "agency": "交通部鐵道局",
+    "color": "#3E7CB1",
+    "phase": "feasibility",
+    "phaseLabel": "規劃中",
+    "progressNote": "交通部鐵道局列為規劃中路網建設。",
+    "latestUpdate": "持續規劃。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "臺鐵海線談文至追分雙軌化。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路路網建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "tra-southlink-double",
+    "name": "南迴線形改善暨雙軌化",
+    "type": "tra",
+    "region": "高雄／屏東／臺東",
+    "agency": "交通部鐵道局",
+    "color": "#3E7CB1",
+    "phase": "feasibility",
+    "phaseLabel": "規劃中",
+    "progressNote": "交通部鐵道局列為規劃中路網建設。",
+    "latestUpdate": "持續規劃。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "南迴鐵路線形改善與雙軌化規劃。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路路網建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "tra-hengchun",
+    "name": "恆春（屏南）觀光鐵路",
+    "type": "tra",
+    "region": "屏東",
+    "agency": "交通部鐵道局",
+    "color": "#3E7CB1",
+    "phase": "feasibility",
+    "phaseLabel": "規劃中",
+    "progressNote": "交通部鐵道局列為規劃中路網建設。",
+    "latestUpdate": "持續規劃。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "屏南地區觀光鐵路計畫。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路路網建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "tra-taoyuan-underground",
+    "name": "桃園都會區鐵路地下化",
+    "type": "tra",
+    "region": "桃園",
+    "agency": "交通部鐵道局",
+    "color": "#355C9A",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressPercent": 37.22,
+    "progressNote": "桃園捷運工程局軌道建設進度總覽同步公布總進度37.22%；主辦機關為交通部鐵道局。",
+    "latestUpdate": "鐵道局列為施工中立體化建設。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "桃園都會區臺鐵地下化建設。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路立體化建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "tra-pingzhen-temp",
+    "name": "增設臺鐵平鎮臨時站",
+    "type": "tra",
+    "region": "桃園",
+    "agency": "交通部鐵道局",
+    "color": "#355C9A",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressNote": "交通部鐵道局列為施工中立體化建設。",
+    "latestUpdate": "持續施工。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "配合桃園鐵路地下化前之平鎮臨時站建設。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路立體化建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "tra-chiayi-elevated",
+    "name": "嘉義市區鐵路高架化",
+    "type": "tra",
+    "region": "嘉義",
+    "agency": "交通部鐵道局",
+    "color": "#355C9A",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressNote": "交通部鐵道局列為施工中立體化建設。",
+    "latestUpdate": "持續施工。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "嘉義市區鐵路高架化計畫。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路立體化建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "tra-chiayi-minxiong",
+    "name": "嘉義延伸民雄高架",
+    "type": "tra",
+    "region": "嘉義",
+    "agency": "交通部鐵道局",
+    "color": "#355C9A",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressNote": "交通部鐵道局列為施工中立體化建設。",
+    "latestUpdate": "持續施工。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "嘉義鐵路高架化向民雄延伸。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路立體化建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "tra-tainan-underground",
+    "name": "臺南市區鐵路地下化",
+    "type": "tra",
+    "region": "臺南",
+    "agency": "交通部鐵道局",
+    "color": "#355C9A",
+    "phase": "construction",
+    "phaseLabel": "施工中",
+    "progressNote": "交通部鐵道局列為施工中立體化建設。",
+    "latestUpdate": "持續施工。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "臺南市區臺鐵地下化計畫。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路立體化建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "tra-kaohsiung-underground",
+    "name": "高雄市區鐵路地下化",
+    "type": "tra",
+    "region": "高雄",
+    "agency": "交通部鐵道局",
+    "color": "#355C9A",
+    "phase": "construction",
+    "phaseLabel": "施工中專區",
+    "progressNote": "交通部鐵道局仍列於施工中立體化建設。",
+    "latestUpdate": "依鐵道局專區持續辦理相關工程。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "高雄市區鐵路地下化相關建設。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路立體化建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "tra-yilan-elevated",
+    "name": "宜蘭鐵路高架化",
+    "type": "tra",
+    "region": "宜蘭",
+    "agency": "交通部鐵道局",
+    "color": "#355C9A",
+    "phase": "construction",
+    "phaseLabel": "施工中專區",
+    "progressNote": "交通部鐵道局列於施工中立體化建設。",
+    "latestUpdate": "持續依核定計畫推進。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "宜蘭地區鐵路高架化建設。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路立體化建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "tra-changhua-elevated",
+    "name": "彰化市鐵路高架化",
+    "type": "tra",
+    "region": "彰化",
+    "agency": "交通部鐵道局",
+    "color": "#355C9A",
+    "phase": "feasibility",
+    "phaseLabel": "規劃中",
+    "progressNote": "交通部鐵道局列為規劃中立體化建設。",
+    "latestUpdate": "持續規劃。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "彰化市鐵路高架化計畫。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路立體化建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "tra-tainan-yongkang",
+    "name": "臺南鐵路延伸永康",
+    "type": "tra",
+    "region": "臺南",
+    "agency": "交通部鐵道局",
+    "color": "#355C9A",
+    "phase": "feasibility",
+    "phaseLabel": "規劃中",
+    "progressNote": "交通部鐵道局列為規劃中立體化建設。",
+    "latestUpdate": "持續規劃。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "臺南鐵路立體化向永康延伸規劃。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路立體化建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  },
+  {
+    "id": "hsr-yilan",
+    "name": "高鐵延伸宜蘭",
+    "type": "hsr",
+    "region": "臺北／新北／宜蘭",
+    "agency": "交通部鐵道局",
+    "color": "#F58220",
+    "phase": "design",
+    "phaseLabel": "設計階段",
+    "progressNote": "綜合規劃與可行性研究修正報告已核定，官方頁面顯示委託技術服務辦理中。",
+    "expectedCompletion": "2037（計畫期程）",
+    "latestUpdate": "進入設計階段。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "高鐵自南港向宜蘭延伸約60.6公里。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "高鐵延伸宜蘭計畫",
+      "url": "https://www.rb.gov.tw/zh-TW/main/main_28/20250505_152320/20251104_133945/20260908_100418/"
+    }
+  },
+  {
+    "id": "hsr-pingtung",
+    "name": "高鐵延伸屏東",
+    "type": "hsr",
+    "region": "高雄／屏東",
+    "agency": "交通部鐵道局",
+    "color": "#F58220",
+    "phase": "feasibility",
+    "phaseLabel": "規劃中",
+    "progressNote": "交通部鐵道局列為規劃中路網建設。",
+    "latestUpdate": "高鐵延伸屏東規劃作業持續辦理。",
+    "lastCheckedAt": "2026-10-26",
+    "description": "臺灣高鐵延伸屏東規劃。",
+    "source": {
+      "agency": "交通部鐵道局",
+      "title": "鐵路路網建設",
+      "url": "https://www.rb.gov.tw/zh-TW/main/"
+    }
+  }
+]
