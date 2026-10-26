@@ -51,6 +51,49 @@ const stageMap: Record<StageFilter, ProjectPhase[]> = {
   construction: ['construction', 'testing', 'operating'],
 }
 
+const completionRank: Record<ProjectPhase, number> = {
+  feasibility: 10,
+  'comprehensive-planning': 20,
+  approved: 30,
+  design: 40,
+  tender: 50,
+  construction: 60,
+  testing: 80,
+  operating: 100,
+}
+
+function compareByCompletion(a: RailwayProject, b: RailwayProject) {
+  if (a.phase === 'operating' || b.phase === 'operating') {
+    return completionRank[b.phase] - completionRank[a.phase]
+  }
+
+  if (a.phase === 'testing' || b.phase === 'testing') {
+    return completionRank[b.phase] - completionRank[a.phase]
+  }
+
+  if (a.phase === 'construction' && b.phase === 'construction') {
+    const aHasProgress = typeof a.progressPercent === 'number'
+    const bHasProgress = typeof b.progressPercent === 'number'
+
+    if (aHasProgress && bHasProgress) {
+      if (b.progressPercent !== a.progressPercent) {
+        return b.progressPercent! - a.progressPercent!
+      }
+    } else if (aHasProgress !== bHasProgress) {
+      return aHasProgress ? -1 : 1
+    }
+  }
+
+  const phaseDiff = completionRank[b.phase] - completionRank[a.phase]
+  if (phaseDiff !== 0) return phaseDiff
+
+  if (typeof a.progressPercent === 'number' || typeof b.progressPercent === 'number') {
+    return (b.progressPercent ?? -1) - (a.progressPercent ?? -1)
+  }
+
+  return a.name.localeCompare(b.name, 'zh-Hant')
+}
+
 function ProjectCard({ project }: { project: RailwayProject }) {
   const currentIndex = phaseOrder.indexOf(project.phase)
 
@@ -144,17 +187,19 @@ function App() {
 
   const filtered = useMemo(() => {
     const keyword = query.trim().toLocaleLowerCase('zh-Hant')
-    return projects.filter((project) => {
-      const typeMatched = filter === 'all' || project.type === filter
-      const stageMatched = stageMap[stageFilter].includes(project.phase)
-      const keywordMatched =
-        !keyword ||
-        [project.name, project.region, project.agency, project.phaseLabel]
-          .join(' ')
-          .toLocaleLowerCase('zh-Hant')
-          .includes(keyword)
-      return typeMatched && stageMatched && keywordMatched
-    })
+    return projects
+      .filter((project) => {
+        const typeMatched = filter === 'all' || project.type === filter
+        const stageMatched = stageMap[stageFilter].includes(project.phase)
+        const keywordMatched =
+          !keyword ||
+          [project.name, project.region, project.agency, project.phaseLabel]
+            .join(' ')
+            .toLocaleLowerCase('zh-Hant')
+            .includes(keyword)
+        return typeMatched && stageMatched && keywordMatched
+      })
+      .sort(compareByCompletion)
   }, [filter, stageFilter, query])
 
   const stats = useMemo(() => {
@@ -276,6 +321,7 @@ function App() {
 
         <div className="result-summary">
           顯示 <strong>{filtered.length}</strong> / {projects.length} 項計畫
+          <span className="sort-hint">依接近完工程度排列 · 施工中有官方％者由高到低</span>
         </div>
 
         <div className="project-grid">
