@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "validate": "node scripts/validate-data.mjs && node --check scripts/update-taoyuan.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.24",
