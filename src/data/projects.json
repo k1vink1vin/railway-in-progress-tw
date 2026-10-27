@@ -8,36 +8,40 @@
     "color": "#9ACD32",
     "phase": "construction",
     "phaseLabel": "施工中",
-    "progressNote": "第一期工程持續施工，官方最新期程以完成工程及初履勘後通車為目標。",
-    "expectedCompletion": "2027（工程目標）",
-    "latestUpdate": "萬大線第一期各區段工程持續施工。",
-    "lastCheckedAt": "2026-10-26",
+    "progressNote": "新北市政府捷運工程局2026-08-05公布萬大中和線計畫進度85.6%。",
+    "expectedCompletion": "2027",
+    "latestUpdate": "計畫進度85.6%，主線已進行動態測試，持續朝2027年完工推進。",
+    "lastCheckedAt": "2026-10-27",
     "description": "由中正紀念堂往中和、土城方向延伸的中運量捷運第一期工程。",
     "source": {
-      "agency": "臺北市政府捷運工程局",
-      "title": "萬大中和樹林一期－路線說明",
-      "url": "https://www.dorts.gov.taipei/cp.aspx?n=E564EC7795D2B5BC"
-    }
+      "agency": "新北市政府捷運工程局",
+      "title": "四環八線便捷新北－萬大中和線計畫進度85.6%",
+      "url": "https://www.dorts.ntpc.gov.tw/news/indexInfo/vKR2Lp4E2JGp",
+      "officialUpdatedAt": "2026-08-05"
+    },
+    "progressPercent": 85.6
   },
   {
     "id": "taipei-wanda-2",
-    "name": "萬大－中和－樹林線第二期",
+    "name": "土城樹林線（萬大線第二期）",
     "type": "metro",
     "region": "新北",
-    "agency": "臺北市政府捷運工程局",
+    "agency": "新北市政府捷運工程局",
     "color": "#9ACD32",
     "phase": "construction",
     "phaseLabel": "施工中",
-    "progressNote": "第二期（土城樹林線）已列入興建中路網。",
-    "expectedCompletion": "2031（工程目標）",
-    "latestUpdate": "第二期工程持續推進。",
-    "lastCheckedAt": "2026-10-26",
+    "progressNote": "新北市政府2026-07-22市政會議紀錄指出土城樹林線工程進度已達45%。",
+    "expectedCompletion": "2031",
+    "latestUpdate": "全線已動工；2026-10-27起CQ890區段持續進行預鑄U型梁吊裝。",
+    "lastCheckedAt": "2026-10-27",
     "description": "自第一期尾端續往樹林、迴龍延伸。",
     "source": {
-      "agency": "臺北市政府捷運工程局",
-      "title": "萬大線工程資訊",
-      "url": "https://www.dorts.gov.taipei/"
-    }
+      "agency": "新北市政府",
+      "title": "新北市政府第799次市政會議紀錄－土城樹林線工程進度45%",
+      "url": "https://www.ntpc.gov.tw/ch/home.jsp?dataserno=9f8631e9fe2ddf361c8d300a9b1f24da&id=cc26771b712271d6",
+      "officialUpdatedAt": "2026-07-22"
+    },
+    "progressPercent": 45
   },
   {
     "id": "taipei-circle-north-south",
@@ -48,15 +52,16 @@
     "color": "#FFCC33",
     "phase": "construction",
     "phaseLabel": "施工中",
-    "progressNote": "北環與南環各區段標持續施工。",
-    "latestUpdate": "北環段多站持續進行連續壁、開挖、支撐與潛盾前置作業。",
-    "lastCheckedAt": "2026-10-26",
+    "progressNote": "新北市政府捷運工程局列為興建中；南北環8個土建區段標均已開工。官方進度頁百分比為動態載入，未採靜態頁面顯示的0%佔位值。",
+    "latestUpdate": "南北環8個土建區段標均已開工，持續進行土建與機電工程。",
+    "lastCheckedAt": "2026-10-27",
     "description": "補齊臺北捷運環狀線北側與南側缺口。",
     "source": {
-      "agency": "臺北市政府捷運工程局",
-      "title": "環狀線北環及南環－工程資訊",
-      "url": "https://www.dorts.gov.taipei/cp.aspx?Create=1&n=7CEEE7ECF48CE83F&s=D72A46A770D73BF7"
-    }
+      "agency": "新北市政府捷運工程局",
+      "title": "環狀線（南環段／北環段）",
+      "url": "https://www.dorts.ntpc.gov.tw/about/route/bQw92Vzy2jOk"
+    },
+    "expectedCompletion": "2031"
   },
   {
     "id": "taipei-circle-east",
@@ -106,10 +111,10 @@
     "phase": "construction",
     "phaseLabel": "施工中",
     "progressPercent": 31.23,
-    "progressNote": "2026-08-20官方新聞稿公布之整體計畫進度。",
+    "progressNote": "新北市政府捷運工程局2026-08-20公布整體計畫進度31.23%。",
     "expectedCompletion": "2032",
-    "latestUpdate": "主體工程持續推進。",
-    "lastCheckedAt": "2026-10-26",
+    "latestUpdate": "主體工程全面展開；官方公布整體計畫進度31.23%。",
+    "lastCheckedAt": "2026-10-27",
     "description": "串聯汐止與東湖並銜接基隆捷運。",
     "source": {
       "agency": "新北市政府捷運工程局",
@@ -125,16 +130,16 @@
     "region": "基隆／新北／臺北",
     "agency": "新北市政府捷運工程局",
     "color": "#5B8DEF",
-    "phase": "design",
-    "phaseLabel": "設計／招標推進",
-    "progressNote": "新北市最新工程表列為設計中；機電統包已決標，部分工程持續招標。",
+    "phase": "construction",
+    "phaseLabel": "先期工程施工／主體招標",
+    "progressNote": "新北捷運局列為興建中；先期工程施工中，機電系統及軌道統包已決標，地下段統包工程招標中。",
     "expectedCompletion": "2033",
-    "latestUpdate": "機電系統及軌道統包工程已決標。",
-    "lastCheckedAt": "2026-10-26",
+    "latestUpdate": "2026-10-13機電系統及軌道統包決標，工程朝實質施工階段推進。",
+    "lastCheckedAt": "2026-10-27",
     "description": "由新北捷運局主政興建，串聯基隆與汐止、東湖。",
     "source": {
       "agency": "新北市政府捷運工程局",
-      "title": "基隆捷運工程推動",
+      "title": "基隆捷運雙捷報－經費審議通過、機電統包決標",
       "url": "https://www.dorts.ntpc.gov.tw/news/indexInfo/P9z2z3NNdrDp?page=1",
       "officialUpdatedAt": "2026-10-13"
     }
@@ -146,16 +151,17 @@
     "region": "新北",
     "agency": "新北市政府捷運工程局",
     "color": "#5B9BD5",
-    "phase": "design",
-    "phaseLabel": "設計中",
-    "progressNote": "新北市境內捷運路線工程計畫列為設計中。",
-    "latestUpdate": "修正計畫持續中央審議。",
-    "lastCheckedAt": "2026-10-26",
+    "phase": "construction",
+    "phaseLabel": "先期工程施工／修正計畫審議",
+    "progressNote": "新北捷運局列為興建中；第二期先期工程已於2025-06-02開工，主體修正計畫仍待中央核定。未將先期工程進度當作全線整體進度。",
+    "latestUpdate": "先期工程施工中；主體修正計畫2026-09再提中央審議。",
+    "lastCheckedAt": "2026-10-27",
     "description": "淡海輕軌藍海線第二期建設。",
     "source": {
       "agency": "新北市政府捷運工程局",
-      "title": "新北市境內捷運路線工程計畫",
-      "url": "https://www.dorts.ntpc.gov.tw/"
+      "title": "淡海線第二期－路線進度",
+      "url": "https://www.dorts.ntpc.gov.tw/about/route/6yEwdwyOmM04",
+      "officialUpdatedAt": "2026-09-09"
     }
   },
   {
@@ -320,15 +326,16 @@
     "color": "#7C5AA6",
     "phase": "tender",
     "phaseLabel": "工程招標／設計",
-    "progressNote": "細部設計技術服務標已決標。",
-    "latestUpdate": "持續辦理細部設計與後續工程採購。",
-    "lastCheckedAt": "2026-10-26",
+    "progressNote": "新北捷運局列為興建中推動；機電與土建統包已於2026-09-30雙決標，尚待正式開工。",
+    "latestUpdate": "2026-09-30機電＋土建雙決標，進入開工準備。",
+    "lastCheckedAt": "2026-10-27",
     "description": "三鶯線自新北延伸至桃園八德。",
     "source": {
       "agency": "桃園市政府捷運工程局",
       "title": "軌道建設進度總覽",
       "url": "https://dorts.tycg.gov.tw/cp.aspx?n=23173"
-    }
+    },
+    "expectedCompletion": "2034"
   },
   {
     "id": "taoyuan-green-zhongli",
