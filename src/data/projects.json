@@ -287,15 +287,16 @@
     "color": "#168447",
     "phase": "construction",
     "phaseLabel": "施工階段",
-    "progressPercent": 72.67,
-    "progressNote": "官方軌道建設進度總覽之計畫總進度。",
-    "latestUpdate": "計畫總進度72.67%。",
-    "lastCheckedAt": "2026-10-26",
+    "progressPercent": 73.18,
+    "progressNote": "桃園市政府捷運工程局「軌道建設進度總覽」公布計畫總進度73.18%。",
+    "latestUpdate": "計畫總進度73.18%。",
+    "lastCheckedAt": "2026-10-27",
     "description": "桃園都會區捷運綠線建設計畫。",
     "source": {
       "agency": "桃園市政府捷運工程局",
       "title": "軌道建設進度總覽",
-      "url": "https://dorts.tycg.gov.tw/cp.aspx?n=23173"
+      "url": "https://dorts.tycg.gov.tw/cp.aspx?n=23173",
+      "officialUpdatedAt": "2026-10-22"
     }
   },
   {
@@ -307,15 +308,17 @@
     "color": "#8B5A2B",
     "phase": "tender",
     "phaseLabel": "工程招標／決標",
-    "progressNote": "機電系統統包工程已決標。",
-    "latestUpdate": "BRM01標機電系統統包工程於2026年7月決標。",
-    "lastCheckedAt": "2026-10-26",
+    "progressNote": "桃園市政府捷運工程局「軌道建設進度總覽」公布計畫總進度5.00%。",
+    "latestUpdate": "BRM01標機電系統統包工程已決標；計畫總進度5.00%。",
+    "lastCheckedAt": "2026-10-27",
     "description": "桃園棕線捷運建設計畫。",
     "source": {
       "agency": "桃園市政府捷運工程局",
       "title": "軌道建設進度總覽",
-      "url": "https://dorts.tycg.gov.tw/cp.aspx?n=23173"
-    }
+      "url": "https://dorts.tycg.gov.tw/cp.aspx?n=23173",
+      "officialUpdatedAt": "2026-10-22"
+    },
+    "progressPercent": 5
   },
   {
     "id": "taoyuan-sanying-bade",
@@ -326,14 +329,15 @@
     "color": "#7C5AA6",
     "phase": "tender",
     "phaseLabel": "工程招標／設計",
-    "progressNote": "新北捷運局列為興建中推動；機電與土建統包已於2026-09-30雙決標，尚待正式開工。",
-    "latestUpdate": "2026-09-30機電＋土建雙決標，進入開工準備。",
+    "progressNote": "桃園市政府捷運工程局「軌道建設進度總覽」顯示機電系統統包標及地下段土建、設施機電、全線軌道統包標均已於2026-09-30決標；官方未公布計畫總進度百分比。",
+    "latestUpdate": "機電與地下段土建／設施機電／軌道統包均已決標，尚未公布計畫總進度％。",
     "lastCheckedAt": "2026-10-27",
     "description": "三鶯線自新北延伸至桃園八德。",
     "source": {
       "agency": "桃園市政府捷運工程局",
       "title": "軌道建設進度總覽",
-      "url": "https://dorts.tycg.gov.tw/cp.aspx?n=23173"
+      "url": "https://dorts.tycg.gov.tw/cp.aspx?n=23173",
+      "officialUpdatedAt": "2026-10-22"
     },
     "expectedCompletion": "2034"
   },
@@ -346,15 +350,17 @@
     "color": "#168447",
     "phase": "construction",
     "phaseLabel": "招標／施工階段",
-    "progressNote": "GEC04標土建統包工程已於2026年8月開工。",
-    "latestUpdate": "部分標案已進入施工。",
-    "lastCheckedAt": "2026-10-26",
+    "progressNote": "桃園市政府捷運工程局「軌道建設進度總覽」公布計畫總進度21.35%。",
+    "latestUpdate": "GEC04標土建統包工程已開工；計畫總進度21.35%。",
+    "lastCheckedAt": "2026-10-27",
     "description": "桃園捷運綠線向中壢延伸計畫。",
     "source": {
       "agency": "桃園市政府捷運工程局",
       "title": "軌道建設進度總覽",
-      "url": "https://dorts.tycg.gov.tw/cp.aspx?n=23173"
-    }
+      "url": "https://dorts.tycg.gov.tw/cp.aspx?n=23173",
+      "officialUpdatedAt": "2026-10-22"
+    },
+    "progressPercent": 21.35
   },
   {
     "id": "taichung-blue",
@@ -832,9 +838,9 @@
     "phase": "construction",
     "phaseLabel": "施工中",
     "progressPercent": 37.52,
-    "progressNote": "交通部鐵道局工程進度：目前進度37.52%，統計截至115/08/31。",
+    "progressNote": "桃園市政府捷運工程局「軌道建設進度總覽」同步公布計畫總進度37.52%；主辦機關為交通部鐵道局。",
     "latestUpdate": "桃園鐵路地下化整體工程進度37.52%。",
-    "lastCheckedAt": "2026-10-26",
+    "lastCheckedAt": "2026-10-27",
     "description": "桃園都會區臺鐵地下化建設。",
     "source": {
       "agency": "交通部鐵道局",
