@@ -20,8 +20,12 @@ const targets = [
   {
     id: 'taipei-circle-north-south',
     progressUrl: 'https://www.dorts.ntpc.gov.tw/about/routeProgress/bQw92Vzy2jOk',
-    fallbackUrl: null,
-    fallbackPatterns: [],
+    fallbackUrl: 'https://www.dorts.gov.taipei/News_Content_table.aspx?n=41977EB83537C82B&s=A6BE42F6367E5C59',
+    fallbackPatterns: [
+      /南環、北環工程[^。]{0,120}?進度(?:已)?達\s*([0-9]+(?:\.[0-9]+)?)\s*%/,
+      /南環段[^。]{0,80}?北環段[^。]{0,120}?進度(?:已)?達\s*([0-9]+(?:\.[0-9]+)?)\s*%/,
+      /工程進度(?:已)?達\s*([0-9]+(?:\.[0-9]+)?)\s*%/,
+    ],
   },
   {
     id: 'ntpc-xidong',
@@ -86,12 +90,21 @@ function parseFallbackPercent(text, patterns) {
 }
 
 function parsePublishedDate(text) {
-  const match = text.match(/發布日期\s*(\d{4})[\/.-](\d{1,2})[\/.-](\d{1,2})/)
-  if (!match) return null
+  const western = text.match(/發布日期\s*(\d{4})[\/.-](\d{1,2})[\/.-](\d{1,2})/)
+  if (western) {
+    return [
+      western[1],
+      String(Number(western[2])).padStart(2, '0'),
+      String(Number(western[3])).padStart(2, '0'),
+    ].join('-')
+  }
+
+  const roc = text.match(/發布日期[：:]?\s*(\d{2,3})[-\/](\d{1,2})[-\/](\d{1,2})/)
+  if (!roc) return null
   return [
-    match[1],
-    String(Number(match[2])).padStart(2, '0'),
-    String(Number(match[3])).padStart(2, '0'),
+    Number(roc[1]) + 1911,
+    String(Number(roc[2])).padStart(2, '0'),
+    String(Number(roc[3])).padStart(2, '0'),
   ].join('-')
 }
 
