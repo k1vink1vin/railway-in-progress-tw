@@ -52,16 +52,18 @@
     "color": "#FFCC33",
     "phase": "construction",
     "phaseLabel": "施工中",
-    "progressNote": "新北市政府捷運工程局列為興建中；南北環8個土建區段標均已開工。官方進度頁百分比為動態載入，未採靜態頁面顯示的0%佔位值。",
-    "latestUpdate": "南北環8個土建區段標均已開工，持續進行土建與機電工程。",
+    "progressNote": "臺北市政府捷運工程局公布：環狀線南環、北環截至2026-03-31整體工程進度31.89%。",
+    "latestUpdate": "南環、北環已全面施工；截至2026年3月底整體工程進度31.89%。",
     "lastCheckedAt": "2026-10-27",
     "description": "補齊臺北捷運環狀線北側與南側缺口。",
     "source": {
-      "agency": "新北市政府捷運工程局",
-      "title": "環狀線（南環段／北環段）",
-      "url": "https://www.dorts.ntpc.gov.tw/about/route/bQw92Vzy2jOk"
+      "agency": "臺北市政府捷運工程局",
+      "title": "蔣萬安主持捷運東環段內湖舊宗路開工－南北環工程進度31.89%",
+      "url": "https://www.dorts.gov.taipei/News_Content_table.aspx?n=41977EB83537C82B&s=A6BE42F6367E5C59",
+      "officialUpdatedAt": "2026-03-31"
     },
-    "expectedCompletion": "2031"
+    "expectedCompletion": "2031",
+    "progressPercent": 31.89
   },
   {
     "id": "taipei-circle-east",
